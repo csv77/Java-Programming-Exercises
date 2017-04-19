@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.java.j2seproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
+            <name>JavaProgrammingExercises</name>
+            <source-roots>
+                <root id="src.src.dir" name="Source Packages"/>
+                <root id="src.Chapter_01.dir"/>
+                <root id="src.Chapter_02.dir"/>
+                <root id="src.Chapter_03.dir"/>
+                <root id="src.Chapter_04.dir"/>
+                <root id="src.Chapter_05.dir"/>
+                <root id="src.Chapter_06.dir"/>
+                <root id="src.Chapter_07.dir"/>
+                <root id="src.Chapter_08.dir"/>
+                <root id="src.Chapter_09.dir"/>
+                <root id="src.Chapter_10.dir"/>
+                <root id="src.Chapter_11.dir"/>
+                <root id="src.Chapter_12.dir"/>
+                <root id="src.Chapter_13.dir"/>
+                <root id="src.Chapter_14.dir"/>
+                <root id="src.Chapter_15.dir"/>
+            </source-roots>
+            <test-roots>
+                <root id="test.src.dir"/>
+            </test-roots>
+        </data>
+    </configuration>
+</project>
