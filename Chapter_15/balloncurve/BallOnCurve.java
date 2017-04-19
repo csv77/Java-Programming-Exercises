@@ -23,7 +23,7 @@ public class BallOnCurve extends Application {
     public void start(Stage primaryStage) {
         Pane pane = new Pane();
         pane.setPadding(new Insets(5, 5, 5, 5));
-        
+        //
         Polyline p1 = new Polyline();
         ObservableList<Double> list1 = p1.getPoints();
         double scaleFactor = 50;
