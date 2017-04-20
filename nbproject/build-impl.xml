@@ -127,11 +127,6 @@ is divided into following sections:
         </condition>
         <condition property="have.sources">
             <or>
-                <available file="${src.src.dir}"/>
-                <available file="${src.Chapter_01.dir}"/>
-                <available file="${src.Chapter_02.dir}"/>
-                <available file="${src.Chapter_03.dir}"/>
-                <available file="${src.Chapter_04.dir}"/>
                 <available file="${src.Chapter_05.dir}"/>
                 <available file="${src.Chapter_06.dir}"/>
                 <available file="${src.Chapter_07.dir}"/>
@@ -245,11 +240,6 @@ is divided into following sections:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target depends="-pre-init,-init-private,-init-user,-init-project,-do-init" name="-init-check">
-        <fail unless="src.src.dir">Must set src.src.dir</fail>
-        <fail unless="src.Chapter_01.dir">Must set src.Chapter_01.dir</fail>
-        <fail unless="src.Chapter_02.dir">Must set src.Chapter_02.dir</fail>
-        <fail unless="src.Chapter_03.dir">Must set src.Chapter_03.dir</fail>
-        <fail unless="src.Chapter_04.dir">Must set src.Chapter_04.dir</fail>
         <fail unless="src.Chapter_05.dir">Must set src.Chapter_05.dir</fail>
         <fail unless="src.Chapter_06.dir">Must set src.Chapter_06.dir</fail>
         <fail unless="src.Chapter_07.dir">Must set src.Chapter_07.dir</fail>
@@ -282,7 +272,7 @@ is divided into following sections:
     </target>
     <target depends="-init-ap-cmdline-properties" if="ap.supported.internal" name="-init-macrodef-javac-with-processors">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.src.dir}:${src.Chapter_01.dir}:${src.Chapter_02.dir}:${src.Chapter_03.dir}:${src.Chapter_04.dir}:${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}" name="srcdir"/>
+            <attribute default="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${javac.processorpath}" name="processorpath"/>
@@ -323,7 +313,7 @@ is divided into following sections:
     </target>
     <target depends="-init-ap-cmdline-properties" name="-init-macrodef-javac-without-processors" unless="ap.supported.internal">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.src.dir}:${src.Chapter_01.dir}:${src.Chapter_02.dir}:${src.Chapter_03.dir}:${src.Chapter_04.dir}:${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}" name="srcdir"/>
+            <attribute default="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${javac.processorpath}" name="processorpath"/>
@@ -356,7 +346,7 @@ is divided into following sections:
     </target>
     <target depends="-init-macrodef-javac-with-processors,-init-macrodef-javac-without-processors" name="-init-macrodef-javac">
         <macrodef name="depend" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.src.dir}:${src.Chapter_01.dir}:${src.Chapter_02.dir}:${src.Chapter_03.dir}:${src.Chapter_04.dir}:${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}" name="srcdir"/>
+            <attribute default="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <sequential>
@@ -954,16 +944,11 @@ is divided into following sections:
                 <include name="*"/>
             </dirset>
         </pathconvert>
-        <j2seproject3:depend srcdir="${src.src.dir}:${src.Chapter_01.dir}:${src.Chapter_02.dir}:${src.Chapter_03.dir}:${src.Chapter_04.dir}:${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${build.generated.subdirs}"/>
+        <j2seproject3:depend srcdir="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${build.generated.subdirs}"/>
     </target>
     <target depends="init,deps-jar,-pre-pre-compile,-pre-compile, -copy-persistence-xml,-compile-depend" if="have.sources" name="-do-compile">
         <j2seproject3:javac gensrcdir="${build.generated.sources.dir}"/>
         <copy todir="${build.classes.dir}">
-            <fileset dir="${src.src.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-            <fileset dir="${src.Chapter_01.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-            <fileset dir="${src.Chapter_02.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-            <fileset dir="${src.Chapter_03.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-            <fileset dir="${src.Chapter_04.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.Chapter_05.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.Chapter_06.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.Chapter_07.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
@@ -995,7 +980,7 @@ is divided into following sections:
     <target depends="init,deps-jar,-pre-pre-compile" name="-do-compile-single">
         <fail unless="javac.includes">Must select some files in the IDE or set javac.includes</fail>
         <j2seproject3:force-recompile/>
-        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.src.dir}:${src.Chapter_01.dir}:${src.Chapter_02.dir}:${src.Chapter_03.dir}:${src.Chapter_04.dir}:${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}"/>
+        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}"/>
     </target>
     <target name="-post-compile-single">
         <!-- Empty placeholder for easier customization. -->
@@ -1261,21 +1246,6 @@ is divided into following sections:
             <classpath>
                 <path path="${javac.classpath}"/>
             </classpath>
-            <fileset dir="${src.src.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
-            </fileset>
-            <fileset dir="${src.Chapter_01.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
-            </fileset>
-            <fileset dir="${src.Chapter_02.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
-            </fileset>
-            <fileset dir="${src.Chapter_03.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
-            </fileset>
-            <fileset dir="${src.Chapter_04.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
-            </fileset>
             <fileset dir="${src.Chapter_05.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
                 <filename name="**/*.java"/>
             </fileset>
@@ -1316,21 +1286,6 @@ is divided into following sections:
             <arg line="${javadoc.endorsed.classpath.cmd.line.arg}"/>
         </javadoc>
         <copy todir="${dist.javadoc.dir}">
-            <fileset dir="${src.src.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
-            </fileset>
-            <fileset dir="${src.Chapter_01.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
-            </fileset>
-            <fileset dir="${src.Chapter_02.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
-            </fileset>
-            <fileset dir="${src.Chapter_03.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
-            </fileset>
-            <fileset dir="${src.Chapter_04.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
-            </fileset>
             <fileset dir="${src.Chapter_05.dir}" excludes="${excludes}" includes="${includes}">
                 <filename name="**/doc-files/**"/>
             </fileset>
