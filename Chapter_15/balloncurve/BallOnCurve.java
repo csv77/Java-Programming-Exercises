@@ -63,7 +63,7 @@ public class BallOnCurve extends Application {
         
         PathTransition pt = new PathTransition(Duration.millis(6000), p1, c);
         pt.setCycleCount(Timeline.INDEFINITE);
-        //pt.setAutoReverse(false);
+        pt.setAutoReverse(true);
         pt.play();
         
         pane.setOnMouseClicked(e -> {
