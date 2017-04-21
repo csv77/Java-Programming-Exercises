@@ -16,6 +16,7 @@
                 <root id="src.Chapter_13.dir"/>
                 <root id="src.Chapter_14.dir"/>
                 <root id="src.Chapter_15.dir"/>
+                <root id="src.Chapter_16.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
