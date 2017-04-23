@@ -1,4 +1,4 @@
-package exercise_16_9;
+package exercise_16_09;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -17,7 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Exercise_16_9 extends Application {
+public class Exercise_16_09 extends Application {
     private Rectangle r1 = getRectangle();
     private Rectangle r2 = getRectangle();
     private TextField tfX1 = new TextField();

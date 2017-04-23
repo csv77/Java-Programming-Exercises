@@ -1,4 +1,4 @@
-package exercise_16_6;
+package exercise_16_06;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,7 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Exercise_16_6 extends Application {
+public class Exercise_16_06 extends Application {
     
     @Override
     public void start(Stage primaryStage) {

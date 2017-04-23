@@ -1,4 +1,4 @@
-package exercise_16_1;
+package exercise_16_01;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -19,7 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Exercise_16_1 extends Application {
+public class Exercise_16_01 extends Application {
     
     @Override
     public void start(Stage primaryStage) {

@@ -1,4 +1,4 @@
-package exercise_16_7;
+package exercise_16_07;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-public class Exercise_16_7 extends Application {
+public class Exercise_16_07 extends Application {
     private TextField tfHour = new TextField();
     private TextField tfMinute = new TextField();
     private TextField tfSecond = new TextField();

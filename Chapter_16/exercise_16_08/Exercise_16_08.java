@@ -1,4 +1,4 @@
-package exercise_16_8;
+package exercise_16_08;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -19,7 +19,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Exercise_16_8 extends Application {
+public class Exercise_16_08 extends Application {
     private Circle c1 = getCircle();
     private Circle c2 = getCircle();
     private TextField tfX1 = new TextField();

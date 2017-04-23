@@ -1,4 +1,4 @@
-package exercise_16_2;
+package exercise_16_02;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -18,7 +18,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class Exercise_16_2 extends Application {
+public class Exercise_16_02 extends Application {
     
     @Override
     public void start(Stage primaryStage) {

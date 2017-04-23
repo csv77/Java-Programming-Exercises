@@ -1,4 +1,4 @@
-package exercise_16_4;
+package exercise_16_04;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class Exercise_16_4 extends Application {
+public class Exercise_16_04 extends Application {
     final static double KM_PER_MILE = 1.602307322544464;
     
     @Override
