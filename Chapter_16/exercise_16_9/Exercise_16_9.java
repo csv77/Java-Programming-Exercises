@@ -123,7 +123,7 @@ public class Exercise_16_9 extends Application {
     
     public VBox getVBox(Label label, TextField tfX, TextField tfY, TextField tfWidth, TextField tfHeight) {
         VBox vBox = new VBox(5);
-        vBox.setAlignment(Pos.CENTER);
+        vBox.setAlignment(Pos.BOTTOM_LEFT);
         vBox.setPrefWidth(150);
         GridPane pane = new GridPane();
         pane.setHgap(5);
