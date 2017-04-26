@@ -2,10 +2,8 @@ package runningfan;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
+import javafx.beans.property.DoubleProperty;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
@@ -30,7 +28,7 @@ public class FanPane extends Pane {
         }
         getChildren().add(c);
         getChildren().addAll(arcs);
-        animation = new Timeline(new KeyFrame(Duration.millis(5), e -> {
+        animation = new Timeline(new KeyFrame(Duration.millis(10), e -> {
             spin();
         }));
         animation.setCycleCount(Timeline.INDEFINITE);
@@ -52,6 +50,10 @@ public class FanPane extends Pane {
     
     public void reverse() {
         rotationAngle *= -1;
+    }
+    
+    public DoubleProperty getRateProperty() {
+        return animation.rateProperty();
     }
     
     public void increaseSpeed() {
