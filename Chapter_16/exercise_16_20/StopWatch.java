@@ -20,7 +20,7 @@ public class StopWatch extends StackPane {
         clear();
         getChildren().add(text);
         text.setFont(Font.font(30));
-        animation = new Timeline(new KeyFrame(Duration.millis(10), e -> {
+        animation = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
             run();
         }));
         animation.setCycleCount(Timeline.INDEFINITE);
