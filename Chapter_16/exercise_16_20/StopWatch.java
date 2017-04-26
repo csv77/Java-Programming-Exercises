@@ -35,14 +35,20 @@ public class StopWatch extends StackPane {
     }
     
     public void run() {
-        if(min == 59) {
+        if(min == 59 && sec == 59) {
             hour++;
             min = 0;
+            sec = 0;
         }
         if(sec == 59) {
-            min++;
+            if(min == 59) {
+                min = 0;
+            }
+            else {
+                min++;
+            }    
         }
-        sec = sec < 59 ? sec + 1 : 0;
+        sec = (sec < 59 ? sec + 1 : 0);
         text.setText(getTime());
     }
     
