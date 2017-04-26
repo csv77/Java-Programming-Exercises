@@ -16,8 +16,8 @@ public class FanPane extends Pane {
     private Arc[] arcs = new Arc[4];
     private Circle c;
     
-    public FanPane(double paneWidht, double paneHeight, double radius) {
-        c = new Circle(paneWidht * 0.5, paneHeight * 0.5, radius);
+    public FanPane(double paneWidth, double paneHeight, double radius) {
+        c = new Circle(paneWidth * 0.5, paneHeight * 0.5, radius);
         c.setStroke(Color.BLACK);
         c.setFill(Color.TRANSPARENT);
         double angle = 40;
