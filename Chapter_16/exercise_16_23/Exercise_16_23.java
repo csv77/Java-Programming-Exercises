@@ -32,15 +32,21 @@ public class Exercise_16_23 extends Application {
     @Override
     public void start(Stage primaryStage) {
         BorderPane paneForGui = setGui();
-        animation = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
-            nextImage();
-        }));
-        animation.setCycleCount(Timeline.INDEFINITE);
+//        animation = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
+//            nextImage();
+//        }));
+//        animation.setCycleCount(Timeline.INDEFINITE);
         
         btStartAnimation.setOnAction(e -> {
             if(animationSpeed.getText().length() > 0) {
                 animation.setRate(Integer.parseInt(animationSpeed.getText()));
             }
+            
+            animation = new Timeline(new KeyFrame(Duration.millis(1000), a -> {
+                nextImage();
+            }));
+            
+            animation.setCycleCount(Timeline.INDEFINITE);
             animation.play();
             
             if(audioURL.getText().length() > 0) {
@@ -76,7 +82,7 @@ public class Exercise_16_23 extends Application {
         imageFilePrefix.setPrefColumnCount(40);
         numberOfImages.setPrefColumnCount(40);
         audioURL.setPrefColumnCount(40);
-        paneForGif.setMinSize(400, 400);
+        paneForGif.setMinSize(500, 500);
         
         GridPane paneForText = new GridPane();
         paneForText.add(new Label("Enter information for animation"), 0, 0);
