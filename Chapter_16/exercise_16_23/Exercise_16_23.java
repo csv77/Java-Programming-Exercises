@@ -67,7 +67,7 @@ public class Exercise_16_23 extends Application {
     }
     
     public void getImages() {
-        if(n == Integer.parseInt(numberOfImages.getText())) {
+        if(n == Integer.parseInt(numberOfImages.getText()) + 1) {
             n = 1;
         }
         paneForGif.getChildren().clear();
