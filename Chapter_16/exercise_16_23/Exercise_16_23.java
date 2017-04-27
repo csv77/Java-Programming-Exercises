@@ -27,33 +27,37 @@ public class Exercise_16_23 extends Application {
     private Button btStartAnimation = new Button("Start Animation");
     private StackPane paneForGif = new StackPane();
     private Timeline animation;
+    private MediaPlayer mediaPlayer;
+    private int animationRate;
     private int n = 1;
     
     @Override
     public void start(Stage primaryStage) {
         BorderPane paneForGui = setGui();
-//        animation = new Timeline(new KeyFrame(Duration.millis(1000), e -> {
-//            nextImage();
-//        }));
-//        animation.setCycleCount(Timeline.INDEFINITE);
-        
+
         btStartAnimation.setOnAction(e -> {
-            if(animationSpeed.getText().length() > 0) {
-                animation.setRate(Integer.parseInt(animationSpeed.getText()));
+            animationRate = Integer.parseInt(animationSpeed.getText());
+            
+            if(animation != null) {
+                animation.stop();
+                animation = null;
+                n = 1;
             }
             
-            animation = new Timeline(new KeyFrame(Duration.millis(1000), a -> {
-                nextImage();
-            }));
+            if(mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer = null;
+            }
             
-            animation.setCycleCount(Timeline.INDEFINITE);
+            animation = new Timeline(new KeyFrame(Duration.millis(animationRate), a -> {
+                getImages();
+            }));
+            animation.setCycleCount(Timeline.INDEFINITE);        
             animation.play();
             
-            if(audioURL.getText().length() > 0) {
-                MediaPlayer mediaPlayer = new MediaPlayer(new Media(audioURL.getText()));
-                mediaPlayer.setCycleCount(Timeline.INDEFINITE);
-                mediaPlayer.play();
-            }
+            mediaPlayer = new MediaPlayer(new Media(audioURL.getText()));
+            mediaPlayer.setCycleCount(Timeline.INDEFINITE);
+            mediaPlayer.play();
         });
         
         Scene scene = new Scene(paneForGui);
@@ -63,18 +67,12 @@ public class Exercise_16_23 extends Application {
     }
     
     public void getImages() {
-        paneForGif.getChildren().clear();
-        paneForGif.getChildren().add(new ImageView(new Image("image/" + imageFilePrefix.getText() + n + ".gif")));
-    }
-    
-    public void nextImage() {
-        if(n < Integer.parseInt(numberOfImages.getText())) {
-            n++;
-        }
-        else {
+        if(n == Integer.parseInt(numberOfImages.getText())) {
             n = 1;
         }
-        getImages();
+        paneForGif.getChildren().clear();
+        paneForGif.getChildren().add(new ImageView(new Image("image/" + imageFilePrefix.getText() + n + ".gif")));
+        n++;
     }
     
     public BorderPane setGui() {
