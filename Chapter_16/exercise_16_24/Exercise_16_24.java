@@ -18,11 +18,13 @@ import javafx.util.Duration;
 public class Exercise_16_24 extends Application {
     private static final String URL = "http://cs.armstrong.edu/liang/common/sample.mp4";
     private Slider slTime = new Slider();
+    private String totalTime;
     
     @Override
     public void start(Stage primaryStage) {
         MediaPlayer mediaPlayer = new MediaPlayer(new Media(URL));
         MediaView mediaView = new MediaView(mediaPlayer);
+        Label lbForTimeDisplay = new Label(getTimeFormat(0), slTime);
         
         Button btPlay = new Button(">");
         btPlay.setOnAction(e -> {
@@ -30,12 +32,14 @@ public class Exercise_16_24 extends Application {
                 mediaPlayer.play();
                 btPlay.setText("||");
                 slTime.setMax(mediaPlayer.getTotalDuration().toMillis());
+                totalTime = getTimeFormat(mediaPlayer.getTotalDuration().toMillis());
             }
             else {
                 mediaPlayer.pause();
                 btPlay.setText(">");
             }
         });
+        System.out.println(totalTime);
         
         Slider slVolume = new Slider();
         slVolume.setPrefWidth(150);
@@ -52,6 +56,7 @@ public class Exercise_16_24 extends Application {
             if(!slTime.isValueChanging()) {
                 slTime.setValue(mediaPlayer.getCurrentTime().toMillis());
             }
+            lbForTimeDisplay.setText(getTimeFormat(mediaPlayer.getCurrentTime().toMillis()) + "/" + totalTime);
         });
         
         slTime.valueProperty().addListener(ov -> {
@@ -59,10 +64,10 @@ public class Exercise_16_24 extends Application {
                 mediaPlayer.seek(new Duration(slTime.getValue()));
             }
         });
-                
+        
         HBox hBox = new HBox(10);
         hBox.setAlignment(Pos.CENTER);
-        hBox.getChildren().addAll(btPlay, new Label("Time"), slTime, new Label("Volume"), slVolume);
+        hBox.getChildren().addAll(btPlay, new Label("Time"), lbForTimeDisplay, new Label("Volume"), slVolume);
         
         BorderPane pane = new BorderPane();
         pane.setCenter(mediaView);
@@ -72,6 +77,18 @@ public class Exercise_16_24 extends Application {
         primaryStage.setTitle("Exercise_16_24");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    
+    public String getTimeFormat(double millis) {
+        String time;
+        long totalSec = (long)millis / 1000;
+        String sec = String.format("%02d", totalSec % 60);
+        long totalMin = totalSec / 60;
+        String min = String.format("%02d", totalMin % 60);
+        long totalHour = totalMin / 60;
+        String hour = String.format("%02d", totalHour % 24);
+        time = hour + ":" + min + ":" + sec;
+        return time;
     }
 
     public static void main(String[] args) {
