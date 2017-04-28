@@ -47,7 +47,7 @@ public class CarPane extends Pane{
     }
     
     public void setSpeed(double speed) {
-        if(speed <= 100) {
+        if(speed <= 100 && speed > 0) {
             racing.setRate(speed);
         }
         else {
