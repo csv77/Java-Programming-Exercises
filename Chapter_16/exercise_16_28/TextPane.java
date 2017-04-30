@@ -6,8 +6,6 @@ import java.util.Scanner;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
@@ -37,7 +35,7 @@ public class TextPane extends Pane {
     public void getSlide() {
         getChildren().clear();
         try {
-            taSlide.setText(getTextFromFile("text/slide" + x + ".txt"));
+            taSlide.setText(getTextFromFile("Chapter_16/text/slide" + x + ".txt"));
             getChildren().add(taSlide);
         }
         catch (FileNotFoundException e) {

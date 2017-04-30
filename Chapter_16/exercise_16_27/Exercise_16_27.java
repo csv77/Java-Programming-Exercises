@@ -65,7 +65,7 @@ public class Exercise_16_27 extends Application {
     public void getDescriptions() throws FileNotFoundException {
         for(int i = 0; i < flagDescription.length; i++) {
             flagDescription[i] = new String();
-            File file = new File("text/description" + i + ".txt");
+            File file = new File("Chapter_16/text/description" + i + ".txt");
             if(!file.exists()) {
                 System.out.println("The file " + file.getName() + " doesn't exists.");
                 System.exit(1);
