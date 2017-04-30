@@ -1,4 +1,4 @@
-package exerrcise_17_01;
+package exercise_17_01;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
