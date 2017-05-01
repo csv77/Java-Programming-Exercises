@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Exercise_17_09 extends Application {
+    AddressPane pane = new AddressPane();
     private final int NAME = 32;
     private final int STREET = 32;
     private final int CITY = 20;
@@ -13,8 +14,6 @@ public class Exercise_17_09 extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        AddressPane pane = new AddressPane();
-        
         pane.btAdd.setOnAction(e -> add());
         pane.btFirst.setOnAction(e -> first());
         pane.btNext.setOnAction(e -> next());
