@@ -20,9 +20,6 @@ public class Exercise_17_10 {
         try {
             try(RandomAccessFile raf = new RandomAccessFile(file, "r")) {
                 int lengthOfPiece = (int)(raf.length() / numberOfPieces);
-                System.out.println(lengthOfPiece);
-                System.out.println(numberOfPieces);
-                System.out.println(raf.length());
                 
                 for(int i = 0; i < numberOfPieces; i++) {
                     raf.seek(i * lengthOfPiece);
