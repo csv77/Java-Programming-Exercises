@@ -24,7 +24,7 @@ public class Exercise_17_15 {
                     output.write(value - 5);
                 }
             }
-        }
+        }//4
         catch (IOException e) {
             e.printStackTrace();
         }
