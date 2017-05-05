@@ -28,10 +28,11 @@ public class Exercise_17_18 {
     }
     
     public static String getBits(int value) {
-        String bits = "";
-        for(int i = 0; i < 8; i++) {
-            bits = ((value >> i) & 1) + bits;
+        value = (value << 24) >> 24;
+        String binary = Integer.toBinaryString(value);
+        for(int i = 0; i < 8 - binary.length(); i++) {
+            binary = "0" + binary;
         }
-        return bits;
+        return binary;
     }
 }
