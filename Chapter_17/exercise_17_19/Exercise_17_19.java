@@ -10,7 +10,6 @@ public class Exercise_17_19 {
     public static void main(String[] args) {
         System.out.print("Enter the filename: ");
         String fileName = new Scanner(System.in).nextLine();
-        String binary = "";
         
         try {
             try(BufferedInputStream input = new BufferedInputStream(new FileInputStream("Chapter_17/" + fileName))) {
@@ -19,7 +18,7 @@ public class Exercise_17_19 {
                     System.out.print(Integer.toHexString(value).toUpperCase());
                 }
             }
-            System.out.println(binary);
+            System.out.println();
         }
         catch (IOException e) {
             e.printStackTrace();
