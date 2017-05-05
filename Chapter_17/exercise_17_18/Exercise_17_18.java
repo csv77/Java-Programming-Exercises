@@ -25,7 +25,6 @@ public class Exercise_17_18 {
         catch (IOException e) {
             e.printStackTrace();
         }
-        
     }
     
     public static String getBits(int value) {
