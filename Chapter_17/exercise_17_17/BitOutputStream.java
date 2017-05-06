@@ -34,6 +34,7 @@ public class BitOutputStream implements AutoCloseable {
         }
     }
     
+    @Override
     public void close() throws IOException {
         if(bitPos > 0) {
             b = b << 8 - bitPos;

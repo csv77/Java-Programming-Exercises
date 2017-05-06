@@ -8,7 +8,7 @@ public class Exercise_17_17 {
     public static void main(String[] args) {
         try {
             try(BitOutputStream out = new BitOutputStream(new File("Chapter_17/Exercise17_17.dat"))) {
-                out.writeBit("010000100100001001101");
+                out.writeBit("0110000101100001011000010100000101000001010000010110101101001011");
             }
             
         } catch (IOException e) {
