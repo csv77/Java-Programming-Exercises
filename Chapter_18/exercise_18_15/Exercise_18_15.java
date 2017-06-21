@@ -7,9 +7,9 @@ public class Exercise_18_15 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Type in a string: ");
-        String text = input.next();
+        String text = input.nextLine();
         System.out.print("Type in a character to count: ");
-        char letter = input.next().charAt(0);
+        char letter = input.nextLine().charAt(0);
         
         System.out.println(count(text, letter));
     }
