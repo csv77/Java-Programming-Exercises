@@ -30,7 +30,7 @@ public class Exercise_18_22 {
             char hex = (char)('A' + (value % 16 - 10));
             return hex + "";
         }
-        return "not valid number";
+        return "invalid number";
     }
     
 }
