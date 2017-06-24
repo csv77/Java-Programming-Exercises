@@ -17,13 +17,13 @@ public class Exercise_18_19 extends Application {
     @Override
     public void start(Stage primaryStage) {       
         SierpinskiTrianglePane pane = new SierpinskiTrianglePane(); 
-
+        
         HBox hBox = new HBox(10);
         Button btDecrease = new Button("-");
         Button btIncrease = new Button("+");
         hBox.getChildren().addAll(btDecrease, btIncrease);
         hBox.setAlignment(Pos.CENTER);
-        
+                
         btDecrease.setOnAction(e -> {
             if(pane.getOrder() > 0) {
                 pane.setOrder(pane.getOrder() - 1);
@@ -45,6 +45,8 @@ public class Exercise_18_19 extends Application {
 
         pane.widthProperty().addListener(ov -> pane.paint());
         pane.heightProperty().addListener(ov -> pane.paint());
+        pane.setOrder(0);
+        
     }
 
     static class SierpinskiTrianglePane extends Pane {
@@ -63,6 +65,7 @@ public class Exercise_18_19 extends Application {
         }
 
         protected void paint() {
+            System.out.println(getWidth() + " " + getHeight());
             Point2D p1 = new Point2D(getWidth() / 2, 10);
             Point2D p2 = new Point2D(10, getHeight() - 10);
             Point2D p3 = new Point2D(getWidth() - 10, getHeight() - 10);
