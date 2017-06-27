@@ -43,7 +43,7 @@ public class Exercise_18_38 extends Application {
         borderPane.setCenter(pane);
         borderPane.setBottom(hBox);
         
-        Scene scene = new Scene(borderPane, 500, 500);
+        Scene scene = new Scene(borderPane, 300, 350);
         primaryStage.setTitle("Exercise_18_38");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -69,11 +69,11 @@ public class Exercise_18_38 extends Application {
         
         private void draw() {
             getChildren().clear();
-            draw(order, 250, 450, length, angle);
+            draw(order, getWidth() / 2, getHeight() - 10, length, angle);
         }
         
         private void draw(int order, double x, double y, double length, double angle) {
-            double newLength = length * 0.7;
+            double newLength = length * 0.6;
             Line line1 = new Line(x, y, x + newLength * Math.cos(angle), y - newLength * Math.sin(angle));
             getChildren().addAll(line1);
                     
@@ -81,8 +81,8 @@ public class Exercise_18_38 extends Application {
                 return;
             }
             else {
-                draw(order - 1, line1.getEndX(), line1.getEndY(), newLength, angle - Math.PI / 7);
-                draw(order - 1, line1.getEndX(), line1.getEndY(), newLength, angle + Math.PI / 7);
+                draw(order - 1, line1.getEndX(), line1.getEndY(), newLength, angle - Math.PI / 5);
+                draw(order - 1, line1.getEndX(), line1.getEndY(), newLength, angle + Math.PI / 5);
             }
         }
     }
