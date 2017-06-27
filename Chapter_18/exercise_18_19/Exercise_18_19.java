@@ -65,7 +65,6 @@ public class Exercise_18_19 extends Application {
         }
 
         protected void paint() {
-            System.out.println(getWidth() + " " + getHeight());
             Point2D p1 = new Point2D(getWidth() / 2, 10);
             Point2D p2 = new Point2D(10, getHeight() - 10);
             Point2D p3 = new Point2D(getWidth() - 10, getHeight() - 10);
