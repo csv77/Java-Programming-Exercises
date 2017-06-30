@@ -1,7 +1,5 @@
 package exercise_19_01;
 
-import java.util.Arrays;
-
 public class GenericStack<E> {
     private E[] list = (E[])new Object[10];
     private int size = 0;
