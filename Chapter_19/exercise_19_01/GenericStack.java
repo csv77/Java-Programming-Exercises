@@ -1,5 +1,7 @@
 package exercise_19_01;
 
+import java.util.Arrays;
+
 public class GenericStack<E> {
     private E[] list = (E[])new Object[10];
     private int size = 0;
@@ -42,7 +44,11 @@ public class GenericStack<E> {
     
     @Override
     public String toString() {
-        return "stack: " + list.toString();
+        String stack = "";
+        for(int i = 0; i < size; i++) {
+            stack += list[i] + " ";
+        }
+        return "stack: " + stack;
     }
     
 }
