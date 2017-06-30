@@ -1,6 +1,6 @@
 package exercise_19_11;
 
-public abstract class GenericMatrix<E extends Object> {
+public abstract class GenericMatrix<E> {
     protected abstract E add(E o1, E o2);
 
     protected abstract E multiply(E o1, E o2);
