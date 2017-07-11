@@ -40,15 +40,16 @@ public class Exercise_20_02 extends Application {
         ScrollPane scrollPane = new ScrollPane(tArea);
         
         tfInput.setOnAction(e -> {
-            if(Character.isDigit(tfInput.getText().charAt(0))) {
+            try{
                 if(!list.contains(Integer.parseInt(tfInput.getText()))) {
                     list.add(Integer.parseInt(tfInput.getText()));
+                    tArea.setText(tArea.getText() + " " + list.getLast());
                 }
             }
-            else {
+            catch (NumberFormatException ex) {
                 System.out.println("It is not a number!");
             }
-            displayList(list);
+            tfInput.clear();
         });
         
         btSort.setOnAction(e -> {
