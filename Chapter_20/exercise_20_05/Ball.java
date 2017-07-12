@@ -32,7 +32,7 @@ public class Ball extends Circle {
         this.color = color;
     }
     
-    Ball(double x, double y, double radius, Color color) {
+    public Ball(double x, double y, double radius, Color color) {
         super(x, y, radius);
         setColor(color);
         setFill(color);
