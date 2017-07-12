@@ -3,7 +3,7 @@ package exercise_20_09;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class Ball extends Circle implements Comparable<Ball> {
+public class Ball extends Circle {
     private double dx = 1;
     private double dy = 1;
     private Color color;
@@ -36,18 +36,5 @@ public class Ball extends Circle implements Comparable<Ball> {
         super(x, y, radius);
         setColor(color);
         setFill(color);
-    }
-
-    @Override
-    public int compareTo(Ball o) {
-        if(getRadius() > o.getRadius()) {
-            return 1;
-        }
-        else if(getRadius() == o.getRadius()) {
-            return 0;
-        }
-        else {
-            return -1;
-        }
     }
 }

@@ -2,6 +2,7 @@ package exercise_20_09;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.PriorityQueue;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.DoubleProperty;
@@ -12,6 +13,7 @@ import javafx.util.Duration;
 
 public class MultipleBallPane extends Pane {
     private Timeline animation;
+    private PriorityQueue<Ball> balls = new PriorityQueue(new BallComparator().reversed());
     
     public MultipleBallPane() {
         animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall()));
@@ -23,13 +25,12 @@ public class MultipleBallPane extends Pane {
         Color color = new Color(Math.random(), Math.random(), Math.random(), 0.5);
         Ball ball = new Ball(30, 30, (int)(Math.random() * 19) + 2, color);
         getChildren().add(ball);
+        balls.offer(ball);
     }
     
     public void subtract() {
         if(getChildren().size() > 0) {
-            ArrayList<Node> nodesList = new ArrayList<>(getChildren());
-            ArrayList<Ball> ballsList = new ArrayList(nodesList);
-            getChildren().remove(Collections.max(ballsList));
+            getChildren().remove(balls.poll());
         }
     }
     
@@ -54,8 +55,8 @@ public class MultipleBallPane extends Pane {
     }
     
     protected void moveBall() {
-        for(int i = 0; i < getChildren().size(); i++) {
-            Ball ball = (Ball)getChildren().get(i);
+        for(Node nodes : getChildren()) {
+            Ball ball = (Ball)nodes;
             if(ball.getCenterX() > getWidth() - ball.getRadius() ||
                     ball.getCenterX() < ball.getRadius()) {
                 ball.setDx(ball.getDx() * (- 1));
