@@ -1,5 +1,6 @@
 package exercise_20_05;
 
+import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.DoubleProperty;
@@ -22,6 +23,11 @@ public class MultipleBallPane extends Pane {
         Ball ball = new Ball(30, 30, 20, color);
         getChildren().add(ball);
         ball.setOnMousePressed(e -> getChildren().remove(ball));
+    }
+    
+    public void add(Ball ball) {
+        ball.setOnMousePressed(e -> getChildren().remove(ball));
+        getChildren().add(ball);
     }
     
     public void subtract() {
@@ -51,8 +57,8 @@ public class MultipleBallPane extends Pane {
     }
     
     protected void moveBall() {
-        for(Node node : getChildren()) {
-            Ball ball = (Ball)node;
+        for(int i = 0; i < getChildren().size(); i++) {
+            Ball ball = (Ball)getChildren().get(i);
             if(ball.getCenterX() > getWidth() - ball.getRadius() ||
                     ball.getCenterX() < ball.getRadius()) {
                 ball.setDx(ball.getDx() * (- 1));
@@ -62,10 +68,51 @@ public class MultipleBallPane extends Pane {
                 ball.setDy(ball.getDy() * (- 1));
             }
             
-            
-            
             ball.setCenterX(ball.getCenterX() + ball.getDx());
             ball.setCenterY(ball.getCenterY() + ball.getDy());
+            
+            for(int j = i + 1; j < getChildren().size(); j++) {
+                Ball ball2 = (Ball)getChildren().get(j);
+                if(isIntersect(ball, ball2)) {
+                    double radius = ball.getRadius() + ball2.getRadius();
+                    double centerX;
+                    double centerY;
+                    
+                    if(ball.getCenterX() - radius < 0) {
+                        centerX = radius;
+                    }
+                    else if(ball.getCenterX() > getWidth() - radius){
+                        centerX = getWidth() - radius;
+                    }
+                    else {
+                        centerX = ball.getCenterX();
+                    }
+                    
+                    if(ball.getCenterY() - radius < 0) {
+                        centerY = radius;
+                    }
+                    else if(ball.getCenterY() > getHeight()- radius){
+                        centerY = getHeight()- radius;
+                    }
+                    else {
+                        centerY = ball.getCenterY();
+                    }
+                    
+                    Ball newBall = new Ball(centerX, centerY, radius, ball.getColor());
+                    getChildren().removeAll(ball, ball2);
+                    add(newBall);
+                }
+            }
+        }
+    }
+    
+    protected boolean isIntersect(Ball b1, Ball b2) {
+        if(Math.abs(b1.getCenterX() - b2.getCenterX()) <= b1.getRadius() + b2.getRadius() &&
+                Math.abs(b1.getCenterY() - b2.getCenterY()) <= b1.getRadius() + b2.getRadius()) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }
