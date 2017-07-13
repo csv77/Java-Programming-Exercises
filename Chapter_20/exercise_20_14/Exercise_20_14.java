@@ -13,10 +13,9 @@ public class Exercise_20_14 {
             System.exit(1);
         }
         
-        String expression = insertBlanks(args[0]);
         Stack<Integer> operandStack = new Stack<>();
         ArrayList<Character> operators = new ArrayList<>(Arrays.asList('+', '-', '*', '/'));
-        String[] tokens = expression.split(" ");
+        String[] tokens = insertBlanks(args[0]).split(" ");
         
         for(String token : tokens) {
             if(token.length() == 0) {
