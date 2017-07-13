@@ -2,6 +2,7 @@ package exercise_20_14;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class Exercise_20_14 {
@@ -26,23 +27,39 @@ public class Exercise_20_14 {
             }
             else if(operators.contains(token.charAt(0))) {
                 char op = token.charAt(0);
-                int op1 = operandStack.pop();
-                int op2 = operandStack.pop();
-                if(op == '+') {
-                    operandStack.push(op2 + op1);
+                int op1 = 0;
+                int op2 = 0;
+                try {
+                    op1 = operandStack.pop();
+                    op2 = operandStack.pop();
+                
+                } catch (EmptyStackException e) {
+                    System.out.println("Wrong expression: " + args[0]);
+                    System.exit(2);
                 }
-                else if(op == '-') {
-                    operandStack.push(op2 - op1);
-                }
-                else if(op == '*') {
-                    operandStack.push(op2 * op1);
-                }
-                else if(op == '/') {
-                    operandStack.push(op2 / op1);
+                switch (op) {
+                    case '+':
+                        operandStack.push(op2 + op1);
+                        break;
+                    case '-':
+                        operandStack.push(op2 - op1);
+                        break;
+                    case '*':
+                        operandStack.push(op2 * op1);
+                        break;
+                    case '/':
+                        operandStack.push(op2 / op1);
+                        break;
+                    default:
+                        break;
                 }
             }
+            else {
+                System.out.println("Wrong expression" + args[0]);
+                System.exit(2);
+            }
         }
-        System.out.println(operandStack.pop());
+        System.out.println("The result is: " + operandStack.pop());
         
     }
     
