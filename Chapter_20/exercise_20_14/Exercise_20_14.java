@@ -18,7 +18,7 @@ public class Exercise_20_14 {
         String[] tokens = expression.split(" ");
         
         for(String token : tokens) {
-            if(tokens.length == 0) {
+            if(token.length() == 0) {
                 continue;
             }
             if(!operators.contains(token.charAt(0)) && !token.equals(" ")) {
