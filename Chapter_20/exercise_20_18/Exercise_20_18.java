@@ -8,7 +8,7 @@ public class Exercise_20_18 {
 
     public static void main(String[] args) {
         File file = new File("c:/programming/java/Intro_to_Java_Programming_10th_exercises/JavaProgrammingExercises/Chapter_06/");
-        System.out.println(file.getName() + " has " + getSize(file) + " bytes");
+        System.out.println(file.getName() + " size: " + getSize(file) + " bytes");
     }
     
     public static long getSize(File directory) {
