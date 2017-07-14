@@ -19,18 +19,22 @@ public class Exercise_20_16 {
             if(token.length() == 0) {
                 continue;
             }
+            
             if(Character.isDigit(token.charAt(0))) {
                 result += token;
             }
+            
             if(token.charAt(0) == '(') {
                 operatorStack.push(token.charAt(0));
             }
+            
             if(token.charAt(0) == ')') {
                 while(operatorStack.peek() != '(') {
                     result += operatorStack.pop();
                 }
                 operatorStack.pop();
             }
+            
             if(operatorStack.isEmpty() || operatorStack.peek() == '(') {
                 if(isOperator(token.charAt(0))) {
                     operatorStack.push(token.charAt(0));
