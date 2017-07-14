@@ -54,7 +54,7 @@ public class Exercise_20_16 {
                     result += operatorStack.pop();
                     operatorStack.push(token.charAt(0));
                 }
-                else if(operatorStack.peek() == '*' || operatorStack.peek() == '/') {
+                else if(!operatorStack.isEmpty() && (operatorStack.peek() == '*' || operatorStack.peek() == '/')) {
                     while(!operatorStack.isEmpty() && (operatorStack.peek() == '*' || operatorStack.peek() == '/')) {
                         result += operatorStack.pop();
                     }
