@@ -31,7 +31,6 @@ public class Exercise_20_14 {
                 try {
                     op1 = operandStack.pop();
                     op2 = operandStack.pop();
-                
                 } catch (EmptyStackException e) {
                     System.out.println("Wrong expression: " + args[0]);
                     System.exit(2);
