@@ -19,7 +19,7 @@ public class Exercise_21_03 {
             try {
                 System.out.println("The number of keywords in " + filename
                         + " is " + countKeywords(file));
-            } catch (Exception ex) {
+            } catch(Exception ex) {
                 ex.printStackTrace();
             }
         }
