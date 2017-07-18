@@ -1,8 +1,11 @@
 package exercise_21_07;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Exercise_21_07 {
 
@@ -15,6 +18,7 @@ public class Exercise_21_07 {
         String[] words = text.split("[ \n\t\r.,;:!?(){}]");
         for(int i = 0; i < words.length; i++) {
             String key = words[i].toLowerCase();
+            
             if(key.length() > 0) {
                 if(!map.containsKey(key)) {
                     map.put(key, 1);
@@ -25,8 +29,16 @@ public class Exercise_21_07 {
             }
         }
         Set<Map.Entry<String, Integer>> entrySet = map.entrySet();
+        ArrayList<WordOccurrence> list = new ArrayList<>();
+        
         for(Map.Entry<String, Integer> entry : entrySet) {
-            System.out.println(entry.getKey() + "\t" + entry.getValue());
+            WordOccurrence word = new WordOccurrence(entry.getKey(), entry.getValue());
+            list.add(word);
+        }
+        Collections.sort(list);
+        
+        for(WordOccurrence word : list) {
+            System.out.println(word);
         }
     }
 }
