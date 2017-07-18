@@ -66,7 +66,6 @@ public class Exercise_21_03 {
             }
             if(stack.isEmpty() && keywordSet.contains(word)){
                 count++;
-                System.out.println(word);
             }
         }
         return count;
