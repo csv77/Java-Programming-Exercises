@@ -20,7 +20,7 @@ public class Exercise_21_13 {
             int year = input.nextInt();
             
             System.out.print("Enter the gender: ");
-            int gender = (input.next().equals("M")) ? 0 : 1;
+            int gender = (input.next().toUpperCase().equals("M")) ? 0 : 1;
             
             System.out.print("Enter the name: ");
             String name = input.next();
