@@ -41,6 +41,7 @@ public class Exercise_21_12 {
         for(String name : setBoys) {
             System.out.print(name + " ");
         }
+        
         System.out.println();
     }
 }
