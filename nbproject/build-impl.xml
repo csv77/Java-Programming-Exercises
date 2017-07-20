@@ -47,8 +47,8 @@ is divided into following sections:
         <property file="${user.properties.file}"/>
         <!-- The two properties below are usually overridden -->
         <!-- by the active platform. Just a fallback. -->
-        <property name="default.javac.source" value="1.4"/>
-        <property name="default.javac.target" value="1.4"/>
+        <property name="default.javac.source" value="1.6"/>
+        <property name="default.javac.target" value="1.6"/>
     </target>
     <target depends="-pre-init,-init-private,-init-user" name="-init-project">
         <property file="nbproject/configs/${config}.properties"/>
@@ -77,7 +77,7 @@ is divided into following sections:
             <and>
                 <isset property="javac.profile"/>
                 <length length="0" string="${javac.profile}" when="greater"/>
-                <matches pattern="1\.[89](\..*)?" string="${javac.source}"/>
+                <matches pattern="((1\.[89])|9)(\..*)?" string="${javac.source}"/>
             </and>
         </condition>
         <condition property="do.archive">
@@ -141,6 +141,10 @@ is divided into following sections:
                 <available file="${src.Chapter_15.dir}"/>
                 <available file="${src.Chapter_16.dir}"/>
                 <available file="${src.Chapter_17.dir}"/>
+                <available file="${src.Chapter_18.dir}"/>
+                <available file="${src.Chapter_19.dir}"/>
+                <available file="${src.Chapter_20.dir}"/>
+                <available file="${src.Chapter_21.dir}"/>
             </or>
         </condition>
         <condition property="netbeans.home+have.tests">
@@ -169,6 +173,7 @@ is divided into following sections:
         <property name="application.args" value=""/>
         <property name="source.encoding" value="${file.encoding}"/>
         <property name="runtime.encoding" value="${source.encoding}"/>
+        <property name="manifest.encoding" value="${source.encoding}"/>
         <condition property="javadoc.encoding.used" value="${javadoc.encoding}">
             <and>
                 <isset property="javadoc.encoding"/>
@@ -255,6 +260,10 @@ is divided into following sections:
         <fail unless="src.Chapter_15.dir">Must set src.Chapter_15.dir</fail>
         <fail unless="src.Chapter_16.dir">Must set src.Chapter_16.dir</fail>
         <fail unless="src.Chapter_17.dir">Must set src.Chapter_17.dir</fail>
+        <fail unless="src.Chapter_18.dir">Must set src.Chapter_18.dir</fail>
+        <fail unless="src.Chapter_19.dir">Must set src.Chapter_19.dir</fail>
+        <fail unless="src.Chapter_20.dir">Must set src.Chapter_20.dir</fail>
+        <fail unless="src.Chapter_21.dir">Must set src.Chapter_21.dir</fail>
         <fail unless="test.src.dir">Must set test.src.dir</fail>
         <fail unless="build.dir">Must set build.dir</fail>
         <fail unless="dist.dir">Must set dist.dir</fail>
@@ -276,7 +285,7 @@ is divided into following sections:
     </target>
     <target depends="-init-ap-cmdline-properties" if="ap.supported.internal" name="-init-macrodef-javac-with-processors">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${src.Chapter_16.dir}:${src.Chapter_17.dir}" name="srcdir"/>
+            <attribute default="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${src.Chapter_16.dir}:${src.Chapter_17.dir}:${src.Chapter_18.dir}:${src.Chapter_19.dir}:${src.Chapter_20.dir}:${src.Chapter_21.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${javac.processorpath}" name="processorpath"/>
@@ -317,7 +326,7 @@ is divided into following sections:
     </target>
     <target depends="-init-ap-cmdline-properties" name="-init-macrodef-javac-without-processors" unless="ap.supported.internal">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${src.Chapter_16.dir}:${src.Chapter_17.dir}" name="srcdir"/>
+            <attribute default="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${src.Chapter_16.dir}:${src.Chapter_17.dir}:${src.Chapter_18.dir}:${src.Chapter_19.dir}:${src.Chapter_20.dir}:${src.Chapter_21.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${javac.processorpath}" name="processorpath"/>
@@ -350,7 +359,7 @@ is divided into following sections:
     </target>
     <target depends="-init-macrodef-javac-with-processors,-init-macrodef-javac-without-processors" name="-init-macrodef-javac">
         <macrodef name="depend" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${src.Chapter_16.dir}:${src.Chapter_17.dir}" name="srcdir"/>
+            <attribute default="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${src.Chapter_16.dir}:${src.Chapter_17.dir}:${src.Chapter_18.dir}:${src.Chapter_19.dir}:${src.Chapter_20.dir}:${src.Chapter_21.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <sequential>
@@ -865,7 +874,7 @@ is divided into following sections:
                     </chainedmapper>
                 </pathconvert>
                 <taskdef classname="org.netbeans.modules.java.j2seproject.copylibstask.CopyLibs" classpath="${libs.CopyLibs.classpath}" name="copylibs"/>
-                <copylibs compress="${jar.compress}" excludeFromCopy="${copylibs.excludes}" index="${jar.index}" indexMetaInf="${jar.index.metainf}" jarfile="${dist.jar}" manifest="@{manifest}" rebase="${copylibs.rebase}" runtimeclasspath="${run.classpath.without.build.classes.dir}">
+                <copylibs compress="${jar.compress}" excludeFromCopy="${copylibs.excludes}" index="${jar.index}" indexMetaInf="${jar.index.metainf}" jarfile="${dist.jar}" manifest="@{manifest}" manifestencoding="UTF-8" rebase="${copylibs.rebase}" runtimeclasspath="${run.classpath.without.build.classes.dir}">
                     <fileset dir="${build.classes.dir}" excludes="${dist.archive.excludes}"/>
                     <manifest>
                         <attribute name="Class-Path" value="${jar.classpath}"/>
@@ -877,7 +886,7 @@ is divided into following sections:
     </target>
     <target name="-init-presetdef-jar">
         <presetdef name="jar" uri="http://www.netbeans.org/ns/j2se-project/1">
-            <jar compress="${jar.compress}" index="${jar.index}" jarfile="${dist.jar}">
+            <jar compress="${jar.compress}" index="${jar.index}" jarfile="${dist.jar}" manifestencoding="UTF-8">
                 <j2seproject1:fileset dir="${build.classes.dir}" excludes="${dist.archive.excludes}"/>
             </jar>
         </presetdef>
@@ -948,7 +957,7 @@ is divided into following sections:
                 <include name="*"/>
             </dirset>
         </pathconvert>
-        <j2seproject3:depend srcdir="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${src.Chapter_16.dir}:${src.Chapter_17.dir}:${build.generated.subdirs}"/>
+        <j2seproject3:depend srcdir="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${src.Chapter_16.dir}:${src.Chapter_17.dir}:${src.Chapter_18.dir}:${src.Chapter_19.dir}:${src.Chapter_20.dir}:${src.Chapter_21.dir}:${build.generated.subdirs}"/>
     </target>
     <target depends="init,deps-jar,-pre-pre-compile,-pre-compile, -copy-persistence-xml,-compile-depend" if="have.sources" name="-do-compile">
         <j2seproject3:javac gensrcdir="${build.generated.sources.dir}"/>
@@ -966,6 +975,10 @@ is divided into following sections:
             <fileset dir="${src.Chapter_15.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.Chapter_16.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.Chapter_17.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="${src.Chapter_18.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="${src.Chapter_19.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="${src.Chapter_20.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="${src.Chapter_21.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
         </copy>
     </target>
     <target if="has.persistence.xml" name="-copy-persistence-xml">
@@ -986,7 +999,7 @@ is divided into following sections:
     <target depends="init,deps-jar,-pre-pre-compile" name="-do-compile-single">
         <fail unless="javac.includes">Must select some files in the IDE or set javac.includes</fail>
         <j2seproject3:force-recompile/>
-        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${src.Chapter_16.dir}:${src.Chapter_17.dir}"/>
+        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.Chapter_05.dir}:${src.Chapter_06.dir}:${src.Chapter_07.dir}:${src.Chapter_08.dir}:${src.Chapter_09.dir}:${src.Chapter_10.dir}:${src.Chapter_11.dir}:${src.Chapter_12.dir}:${src.Chapter_13.dir}:${src.Chapter_14.dir}:${src.Chapter_15.dir}:${src.Chapter_16.dir}:${src.Chapter_17.dir}:${src.Chapter_18.dir}:${src.Chapter_19.dir}:${src.Chapter_20.dir}:${src.Chapter_21.dir}"/>
     </target>
     <target name="-post-compile-single">
         <!-- Empty placeholder for easier customization. -->
@@ -1012,15 +1025,15 @@ is divided into following sections:
     </target>
     <target depends="init" if="do.archive+manifest.available" name="-do-jar-copy-manifest">
         <tempfile deleteonexit="true" destdir="${build.dir}" property="tmp.manifest.file"/>
-        <copy file="${manifest.file}" tofile="${tmp.manifest.file}"/>
+        <copy encoding="${manifest.encoding}" file="${manifest.file}" outputencoding="UTF-8" tofile="${tmp.manifest.file}"/>
     </target>
     <target depends="init,-do-jar-create-manifest,-do-jar-copy-manifest" if="do.archive+main.class.available" name="-do-jar-set-mainclass">
-        <manifest file="${tmp.manifest.file}" mode="update">
+        <manifest encoding="UTF-8" file="${tmp.manifest.file}" mode="update">
             <attribute name="Main-Class" value="${main.class}"/>
         </manifest>
     </target>
     <target depends="init,-do-jar-create-manifest,-do-jar-copy-manifest" if="do.archive+profile.available" name="-do-jar-set-profile">
-        <manifest file="${tmp.manifest.file}" mode="update">
+        <manifest encoding="UTF-8" file="${tmp.manifest.file}" mode="update">
             <attribute name="Profile" value="${javac.profile}"/>
         </manifest>
     </target>
@@ -1028,7 +1041,7 @@ is divided into following sections:
         <basename file="${application.splash}" property="splashscreen.basename"/>
         <mkdir dir="${build.classes.dir}/META-INF"/>
         <copy failonerror="false" file="${application.splash}" todir="${build.classes.dir}/META-INF"/>
-        <manifest file="${tmp.manifest.file}" mode="update">
+        <manifest encoding="UTF-8" file="${tmp.manifest.file}" mode="update">
             <attribute name="SplashScreen-Image" value="META-INF/${splashscreen.basename}"/>
         </manifest>
     </target>
@@ -1223,7 +1236,7 @@ is divided into following sections:
     <target depends="-profile-check" description="Profile a selected class in the IDE." if="profiler.configured" name="profile-test-with-main">
         <fail unless="run.class">Must select one file in the IDE or set run.class</fail>
         <startprofiler/>
-        <antcal target="run-test-with-main"/>
+        <antcall target="run-test-with-main"/>
     </target>
     <target depends="-profile-check,-profile-applet-pre72" if="profiler.configured" name="profile-applet" unless="profiler.info.jvmargs.agent">
         <fail unless="applet.url">Must select one file in the IDE or set applet.url</fail>
@@ -1291,6 +1304,18 @@ is divided into following sections:
             <fileset dir="${src.Chapter_17.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
                 <filename name="**/*.java"/>
             </fileset>
+            <fileset dir="${src.Chapter_18.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
+                <filename name="**/*.java"/>
+            </fileset>
+            <fileset dir="${src.Chapter_19.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
+                <filename name="**/*.java"/>
+            </fileset>
+            <fileset dir="${src.Chapter_20.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
+                <filename name="**/*.java"/>
+            </fileset>
+            <fileset dir="${src.Chapter_21.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
+                <filename name="**/*.java"/>
+            </fileset>
             <fileset dir="${build.generated.sources.dir}" erroronmissingdir="false">
                 <include name="**/*.java"/>
                 <exclude name="*.java"/>
@@ -1335,6 +1360,18 @@ is divided into following sections:
                 <filename name="**/doc-files/**"/>
             </fileset>
             <fileset dir="${src.Chapter_17.dir}" excludes="${excludes}" includes="${includes}">
+                <filename name="**/doc-files/**"/>
+            </fileset>
+            <fileset dir="${src.Chapter_18.dir}" excludes="${excludes}" includes="${includes}">
+                <filename name="**/doc-files/**"/>
+            </fileset>
+            <fileset dir="${src.Chapter_19.dir}" excludes="${excludes}" includes="${includes}">
+                <filename name="**/doc-files/**"/>
+            </fileset>
+            <fileset dir="${src.Chapter_20.dir}" excludes="${excludes}" includes="${includes}">
+                <filename name="**/doc-files/**"/>
+            </fileset>
+            <fileset dir="${src.Chapter_21.dir}" excludes="${excludes}" includes="${includes}">
                 <filename name="**/doc-files/**"/>
             </fileset>
             <fileset dir="${build.generated.sources.dir}" erroronmissingdir="false">

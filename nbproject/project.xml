@@ -24,6 +24,10 @@
                 <root id="src.Chapter_15.dir"/>
                 <root id="src.Chapter_16.dir"/>
                 <root id="src.Chapter_17.dir"/>
+                <root id="src.Chapter_18.dir"/>
+                <root id="src.Chapter_19.dir"/>
+                <root id="src.Chapter_20.dir"/>
+                <root id="src.Chapter_21.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
