@@ -19,7 +19,7 @@ public class Exercise_22_01 {
             }
             else {
                 length = 1;
-           }
+            }
             if(maxLength < length) {
                     maxLength = length;
                     maxIndex = i - maxLength + 1;
