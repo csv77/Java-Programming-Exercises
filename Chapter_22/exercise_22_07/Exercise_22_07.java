@@ -10,11 +10,6 @@ public class Exercise_22_07 {
         points[3] = new Point(1, 9);
         points[4] = new Point(8, 7);
         
-        
-        
-//        for (int i = 0; i < points.length; i++) {
-//            points[i] = new Point((int)(Math.random() * 1000000), (int)(Math.random() * 1000000));
-//        }
         Pair pair = Pair.getClosestPair(points);
         
         System.out.println(pair.getP1());
