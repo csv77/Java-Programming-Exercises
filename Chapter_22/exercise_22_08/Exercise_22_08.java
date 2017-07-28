@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Exercise_22_08 {
 
     public static void main(String[] args) {
-        long n = 100000L;
+        long n = 10000000000L;
         
         try(RandomAccessFile inout = new RandomAccessFile("PrimeNumbers.dat", "rw");) {
             ArrayList<Long> list = new ArrayList<>();
