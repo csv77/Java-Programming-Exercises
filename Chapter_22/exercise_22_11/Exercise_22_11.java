@@ -2,6 +2,7 @@ package exercise_22_11;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Exercise_22_11 {
@@ -27,14 +28,14 @@ public class Exercise_22_11 {
     }
     
     public static ArrayList<MyPoint> getConvexHull(double[][] s) {
-        ArrayList<MyPoint> convexHull = new ArrayList<>();
+        LinkedList<MyPoint> convexHull = new LinkedList<>();
         
-        ArrayList<MyPoint> points = new ArrayList<>();
+        LinkedList<MyPoint> points = new LinkedList<>();
         for(int i = 0; i < s.length; i++) {
             points.add(new MyPoint(s[i][0], s[i][1]));
         }
         
-        MyPoint p0 = points.get(0);
+        MyPoint p0 = points.getFirst();
         for(MyPoint point : points) {
             if(p0.y < point.y) {
                 p0 = point;
@@ -57,18 +58,20 @@ public class Exercise_22_11 {
         
         int i = 2;
         while(i < points.size()) {
-            MyPoint t1 = convexHull.get(convexHull.size() - 1);
-            MyPoint t2 = convexHull.get(convexHull.size() - 2);
+            System.out.println(convexHull);
+            MyPoint t1 = convexHull.removeLast();
+            MyPoint t2 = convexHull.getLast();
+            convexHull.add(t1);
             if(getPosition(t2, t1, points.get(i)) < 0) {
                 convexHull.add(points.get(i));
                 i++;
             }
             else {
-                convexHull.remove(t1);
+                convexHull.removeLast();
             }
         }
         
-        return convexHull;
+        return new ArrayList(convexHull);
     }
     
     public static double getPosition(MyPoint p0, MyPoint p1, MyPoint p2) {
