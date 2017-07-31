@@ -21,7 +21,7 @@ public class Exercise_22_11 {
         ArrayList<MyPoint> list = getConvexHull(points);
         System.out.println("The convex hull is");
         for(MyPoint point : list) {
-            System.out.print("(" + point.x + ", " + point.y + ") ");
+            System.out.print(point);
         }
         System.out.println();
     }
@@ -45,7 +45,6 @@ public class Exercise_22_11 {
         }
         convexHull.add(p0);
         
-        //set p0 as rightMostLowestPoint for every MyPoint in points
         for(MyPoint point : points) {
             point.setRightMostLowestPoint(p0);
         }
@@ -114,7 +113,7 @@ public class Exercise_22_11 {
         
         @Override
         public String toString() {
-            return "(" + x + ", " + y + ")";
+            return "(" + x + ", " + y + ") ";
         }
     }
 }
