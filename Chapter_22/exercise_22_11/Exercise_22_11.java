@@ -1,6 +1,7 @@
 package exercise_22_11;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Exercise_22_11 {
@@ -38,7 +39,7 @@ public class Exercise_22_11 {
             if(p0.y < point.y) {
                 p0 = point;
             }
-            else if(p0.y == point.y && p0.y < point.y) {
+            else if(p0.y == point.y && p0.x < point.x) {
                 p0 = point;
             }
         }
@@ -49,9 +50,30 @@ public class Exercise_22_11 {
             point.setRightMostLowestPoint(p0);
         }
         
+        points.remove(p0);
+        Collections.sort(points);
         
+        convexHull.add(points.get(0));
+        convexHull.add(points.get(1));
+        
+        int i = 2;
+        while(i < points.size()) {
+            MyPoint t1 = convexHull.get(convexHull.size() - 1);
+            MyPoint t2 = convexHull.get(convexHull.size() - 2);
+            if(getPosition(t2, t1, points.get(i)) < 0) {
+                convexHull.add(points.get(i));
+                i++;
+            }
+            else {
+                convexHull.remove(t1);
+            }
+        }
         
         return convexHull;
+    }
+    
+    public static double getPosition(MyPoint p0, MyPoint p1, MyPoint p2) {
+        return (p1.x - p0.x) * (p2.y - p0.y) - (p2.x - p0.x) * (p1.y - p0.y);
     }
     
     private static class MyPoint implements Comparable<MyPoint> {
@@ -71,10 +93,28 @@ public class Exercise_22_11 {
             return Math.atan2(rightMostLowestPoint.y - this.y, rightMostLowestPoint.x - this.x);
         }
         
+        public double getDistanceFromRightMostLowestPoint() {
+            return Math.sqrt(Math.pow((this.x - rightMostLowestPoint.x), 2) +
+                    Math.pow(this.y - rightMostLowestPoint.y, 2));
+        }
+        
         @Override
         public int compareTo(MyPoint o) {
-            
-            
+            if(getAngle() < o.getAngle()) {
+                return 1;
+            }
+            else if(getAngle() == o.getAngle() &&
+                    getDistanceFromRightMostLowestPoint() > o.getDistanceFromRightMostLowestPoint()) {
+                return 0;
+            }
+            else {
+                return -1;
+            }
+        }
+        
+        @Override
+        public String toString() {
+            return "(" + x + ", " + y + ")";
         }
     }
 }
