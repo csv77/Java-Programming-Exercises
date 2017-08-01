@@ -58,7 +58,6 @@ public class Exercise_22_11 {
         
         int i = 2;
         while(i < points.size()) {
-            System.out.println(convexHull);
             MyPoint t1 = convexHull.removeLast();
             MyPoint t2 = convexHull.getLast();
             convexHull.add(t1);
