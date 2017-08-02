@@ -65,7 +65,7 @@ public class Exercise_22_15 extends Application {
         });
         
         Scene scene = new Scene(pane, 500, 250);
-        primaryStage.setTitle("Exercise_22_13");
+        primaryStage.setTitle("Exercise_22_15");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
