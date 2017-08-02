@@ -94,7 +94,8 @@ public class Pair {
                     (pointsOrderedOnY[i].getX() >= pointsOrderedOnX[halfSize].getX() - distance)) {
                 stripL.add(pointsOrderedOnY[i]);
             }
-            else {
+            else if((pointsOrderedOnY[i].getX() > pointsOrderedOnX[halfSize].getX()) && 
+                    (pointsOrderedOnY[i].getX() <= pointsOrderedOnX[halfSize].getX() + distance)) {
                 stripR.add(pointsOrderedOnY[i]);
             }
         }
@@ -102,12 +103,12 @@ public class Pair {
         double d3 = distance;
         int r = 0;
         for (int i = 0; i < stripL.size(); i++) {
-            while (r < stripR.size() && stripL.get(i).getY() > stripR.get(r).getY() + distance) {
+            while (r < stripR.size() && stripL.get(i).getY() >= stripR.get(r).getY() + distance) {
                 r++;
             }
 
             int r1 = r;
-            while (r1 < stripR.size() && stripR.get(r1).getY() <= stripL.get(i).getY() + distance) {
+            while (r1 < stripR.size() && Math.abs(stripR.get(r1).getY() - stripL.get(i).getY()) <= distance) {
                 if (d3 > distance(stripL.get(i), stripR.get(r1))) {
                     d3 = distance(stripL.get(i), stripR.get(r1));
                     p.p1 = stripL.get(i);
