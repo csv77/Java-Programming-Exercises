@@ -12,5 +12,6 @@ public class Exercise_23_11 {
         
         System.out.println("Are heap1 and heap2 equals? " + ((heap1.equals(heap2) ? "yes" : "no")));
         System.out.println("Are heap1 and heap3 equals? " + ((heap1.equals(heap3) ? "yes" : "no")));
+        System.out.println("Are heap1 and heap3 the same object? " + ((heap1 == heap3) ? "yes" : "no"));
     }
 }
