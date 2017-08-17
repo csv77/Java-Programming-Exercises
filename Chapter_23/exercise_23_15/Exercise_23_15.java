@@ -110,7 +110,4 @@ public class Exercise_23_15 extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
-    
-    
 }
