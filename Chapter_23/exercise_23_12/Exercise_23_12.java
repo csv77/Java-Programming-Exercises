@@ -6,7 +6,7 @@ public class Exercise_23_12 {
     private static final int N = 7;
     
     public static void main(String[] args) {
-        int[] list = new int[1000000];
+        Integer[] list = new Integer[1000000];
         for(int i = 0; i < list.length; i++) {
             list[i] = (int)(Math.random() * Math.pow(10, N));
         }
@@ -23,7 +23,7 @@ public class Exercise_23_12 {
         System.out.println();
     }
     
-    public static void radixSort(int[] list, int numberOfDigits) {
+    public static void radixSort(Integer[] list, int numberOfDigits) {
         ArrayList<Integer>[] buckets = new ArrayList[10];
         for(int i = 0; i < buckets.length; i++) {
             buckets[i] = new ArrayList<>();
