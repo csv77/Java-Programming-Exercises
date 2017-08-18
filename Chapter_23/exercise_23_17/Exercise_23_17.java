@@ -22,7 +22,7 @@ public class Exercise_23_17 extends Application {
     @Override
     public void start(Stage primaryStage) {
         BorderPane borderPane = new BorderPane();
-        RadixSortControl radixSortControl = new RadixSortControl(3);
+        RadixSortControl radixSortControl = new RadixSortControl((int)Math.log10(INTERVAL));
         
         VBoxForBuckets vBoxForBuckets = new VBoxForBuckets();
         vBoxForBuckets.setStyle("-fx-border-color : black");
@@ -155,11 +155,12 @@ public class Exercise_23_17 extends Application {
         private int[] numbers = new int[SIZE];
         private ArrayList<Integer>[] bucketsList = new ArrayList[DIGITS];
         private int numberOfDigits;
-        private int j = 0;
-        private int m = numberOfDigits;
-        private int temp = 0;
+        private int j;
+        private int m;
+        private int temp;
         
         public RadixSortControl(int numberOfDigits) {
+            int j = 0, temp = 0;
             this.numberOfDigits = numberOfDigits;
             this.m = numberOfDigits;
             createNumbers();
@@ -174,10 +175,6 @@ public class Exercise_23_17 extends Application {
 
         public int getTemp() {
             return temp;
-        }
-
-        public ArrayList<Integer>[] getBuckets() {
-            return bucketsList;
         }
 
         public int[] getNumbers() {
