@@ -185,7 +185,7 @@ public class Exercise_23_17 extends Application {
         }
         
         protected void createNumbers() {
-            for(int i = 0; i < 20; i++) {
+            for(int i = 0; i < SIZE; i++) {
                 numbers[i] = (int)(Math.random() * INTERVAL);
             }
         }
