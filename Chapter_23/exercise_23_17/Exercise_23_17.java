@@ -24,9 +24,8 @@ public class Exercise_23_17 extends Application {
         BorderPane borderPane = new BorderPane();
         RadixSortControl radixSortControl = new RadixSortControl((int)Math.log10(INTERVAL));
         
-        VBoxForBuckets vBoxForBuckets = new VBoxForBuckets();
+        VBoxForBuckets vBoxForBuckets = new VBoxForBuckets(radixSortControl.getNumbers());
         vBoxForBuckets.setStyle("-fx-border-color : black");
-        vBoxForBuckets.setNumbers(radixSortControl.getNumbers());
         vBoxForBuckets.repaintBuckets();
         
         Button btStep = new Button("Step");
@@ -87,17 +86,13 @@ public class Exercise_23_17 extends Application {
         private int[] numbers;
         private HBox hBoxForBuckets = new HBox(2);
         private HBox hBoxForRectangles = new HBox();
+
+        public VBoxForBuckets(int[] numbers) {
+            this.numbers = numbers;
+        }
         
         public VBox[] getBuckets() {
             return buckets;
-        }
-
-        public Rectangle[] getRectangles() {
-            return rectangles;
-        }
-
-        public Label[] getLbNumbers() {
-            return lbNumbers;
         }
 
         public void setNumbers(int[] numbers) {
