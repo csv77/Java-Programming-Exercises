@@ -40,38 +40,37 @@ public abstract class MyAbstractList<E> implements MyList<E> {
             return false;
     }
     
-    /** Adds the elements in otherList to this list.
+    @Override/** Adds the elements in otherList to this list.
     * Returns true if this list changed as a result of the call */
     public boolean addAll(MyList<E> otherList) {
-        int lastSize = this.size;
+        int lastSize = size;
         for(E e : otherList) {
-            this.add(e);
+            add(e);
         }
         return lastSize != size;
     }
     
-    /** Removes all the elements in otherList from this list
+    @Override/** Removes all the elements in otherList from this list
     * Returns true if this list changed as a result of the call */
     public boolean removeAll(MyList<E> otherList) {
-        int lastSize = this.size;
+        int lastSize = size;
         for(E e : otherList) {
-            if(this.contains(e)) {
-                this.remove(e);
+            if(contains(e)) {
+                remove(e);
             }
         }
         return lastSize != size;
     }
     
-    /** Retains the elements in this list that are also in otherList
+    @Override/** Retains the elements in this list that are also in otherList
     * Returns true if this list changed as a result of the call */
     public boolean retainAll(MyList<E> otherList) {
-        int lastSize = this.size;
-        for(E e : otherList) {
-            if(!this.contains(e)) {
-                this.remove(e);
+        int lastSize = size;
+        for(int i = size - 1; i >= 0; i--) {
+            if(!otherList.contains(get(i))) {
+                remove(get(i));
             }
         }
         return lastSize != size;
     }
-    
 }
