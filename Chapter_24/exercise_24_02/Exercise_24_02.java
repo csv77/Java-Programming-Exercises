@@ -1,8 +1,5 @@
 package exercise_24_02;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Exercise_24_02 {
 
     public static void main(String[] args) {
