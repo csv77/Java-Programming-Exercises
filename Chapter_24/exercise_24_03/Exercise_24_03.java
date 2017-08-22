@@ -22,8 +22,9 @@ public class Exercise_24_03 {
         for(int i = 0; i < list.size(); i++) {
             System.out.println(iterator.next());
         }
+        System.out.println();
         
-        iterator = list.listIterator(list.size() - 1);
+        iterator = list.listIterator(3);
         for(int i = list.size() - 1; iterator.hasPrevious() && i >= 0; i--) {
             System.out.println(iterator.previous());
         }

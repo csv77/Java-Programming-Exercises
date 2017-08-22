@@ -152,13 +152,15 @@ public class TwoWayLinkedList<E> extends AbstractSequentialList<E> {
 
     public class TwoWayLinkedListIterator<E> implements ListIterator<E> {
         private Node<E> current = (Node<E>)head; // Current index
-        private int index;
+        private Node<E> last = (Node<E>)tail;
         
         public TwoWayLinkedListIterator() {
         }
         
         public TwoWayLinkedListIterator(int index) {
-            this.index = index;
+            for(int i = 0; i < index; i++) {
+                current = current.next;
+            }
         }
                 
         @Override
@@ -175,34 +177,24 @@ public class TwoWayLinkedList<E> extends AbstractSequentialList<E> {
 
         @Override
         public boolean hasPrevious() {
-            return (current != null);
+            return (last != null);
         }
 
         @Override
         public E previous() {
-            E e = current.element;
-            current = current.previous;
+            E e = last.element;
+            last = last.previous;
             return e;
         }
 
         @Override
         public int nextIndex() {
-            if(hasNext()) {
-                return index + 1;
-            }
-            else {
-                throw new IndexOutOfBoundsException("no more element");
-            }
+            return 1;
         }
 
         @Override
         public int previousIndex() {
-            if(hasPrevious()) {
-                return index - 1;
-            }
-            else {
-                throw new IndexOutOfBoundsException("no more element");
-            }
+            return 1;
         }
 
         @Override
