@@ -5,7 +5,7 @@ import java.util.ListIterator;
 public class Exercise_24_03 {
 
     public static void main(String[] args) {
-        String[] array1 = {"Tom","Jane" , "Michael", "Jane", "Andrea"};
+        String[] array1 = {"Tom","Marion" , "Michael", "Jane", "Andrea"};
         TwoWayLinkedList<String> list = new TwoWayLinkedList<>(array1);
         System.out.println(list);
         
@@ -16,24 +16,62 @@ public class Exercise_24_03 {
         System.out.println(list);
         
         list.add(3, "John");
-        System.out.println(list);
+        System.out.println(list + "\n");
         
+        list.add(6, "Julia");
+        System.out.println(list + "\n");
+                
         ListIterator<String> iterator = list.listIterator(0);
-        for(int i = 0; i < list.size(); i++) {
-            System.out.println(iterator.next());
+        while(iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
         }
-        System.out.println();
+        System.out.println("\n");
         
-        iterator = list.listIterator(3);
-        for(int i = list.size() - 1; iterator.hasPrevious() && i >= 0; i--) {
-            System.out.println(iterator.previous());
+//        iterator = list.listIterator(0);
+//        while(iterator.hasNext()) {
+//            System.out.print(iterator.nextIndex() + " ");
+//        }
+//        System.out.println("\n");
+        
+        iterator = list.listIterator(5);
+        while(iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
         }
+        System.out.println("\n");
+        
+        iterator = list.listIterator(4);
+        while(iterator.hasPrevious()) {
+            System.out.print(iterator.previous() + " ");
+        }
+        System.out.println("\n");
         
         list.removeFirst();
         System.out.println(list);
         
         list.removeLast();
         System.out.println(list);
-                
+        
+        list.remove(2);
+        System.out.println(list);
+        
+        list.remove(4);
+        System.out.println(list);
+        
+        System.out.println(list.contains("Jane"));
+        System.out.println(list.contains("James"));
+               
+        System.out.println(list.get(1));
+        System.out.println(list.get(4));
+        
+        System.out.println(list.indexOf("Michael"));
+        System.out.println(list.indexOf("Tom"));
+        System.out.println(list.indexOf("Andrea"));
+        System.out.println(list.indexOf("James"));
+        
+        list.add(2, "Andrea");
+        System.out.println(list);
+        
+        System.out.println(list.lastIndexOf("Andrea"));
+        
     }
 }

@@ -80,10 +80,19 @@ public class TwoWayLinkedList<E> extends AbstractSequentialList<E> {
             addLast(e);
         }
         else {
-            Node<E> current = head;
-            for(int i = 1; i < index; i++) {
-                current = current.next;
+            Node<E> current = head.next;
+            if(index < size / 2) {
+                for(int i = 1; i < index; i++) {
+                    current = current.next;
+                }
             }
+            else {
+                current = tail.previous;
+                for(int i = size - 2; i >= index; i--) {
+                    current = current.previous;
+                }
+            }
+            
             Node<E> temp2 = current.next;
             Node<E> temp1 = current;
             current.next = new Node<E>(e);
@@ -136,13 +145,157 @@ public class TwoWayLinkedList<E> extends AbstractSequentialList<E> {
         }
     }
     
+    @Override /** Remove the element at the specified position in this 
+     *  list. Return the element that was removed from the list. */
+    public E remove(int index) {   
+        if(index < 0 || index >= size) {
+            return null;
+        }
+        else if(index == 0) {
+            return removeFirst();
+        }
+        else if(index == size - 1) {
+            return removeLast();
+        }
+        else {
+            Node<E> current = head.next;
+            if(index < size / 2) {
+                for(int i = 1; i < index; i++) {
+                    current = current.next;
+                }
+            }
+            else {
+                current = tail.previous;
+                for(int i = size - 2; i > index; i--) {
+                    current = current.previous;
+                }
+            }
+            
+            Node<E> previous = current.previous;
+            previous.next = current.next;
+            current.next.previous = previous;
+            size--;
+            return current.element;
+        }
+    }
+    
+    @Override /** Override toString() to return elements in the list */
+    public String toString() {
+        StringBuilder result = new StringBuilder("[");
+
+        Node<E> current = head;
+        for (int i = 0; i < size; i++) {
+            result.append(current.element);
+            current = current.next;
+            if (current != null) {
+                result.append(", "); // Separate two elements with a comma
+            }
+            else {
+                result.append("]"); // Insert the closing ] in the string
+            }
+        }
+
+        return result.toString();
+    }
+    
+    @Override /** Clear the list */
+    public void clear() {
+        size = 0;
+        head = tail = null;
+    }
+
+    @Override /** Return true if this list contains the element e */
+    public boolean contains(Object e) {
+        if(size == 0) {
+            return false;
+        }
+        Node<E> current = head;
+        for(int i = 0; i < size; i++, current = current.next) {
+            if(current.element.equals((E)e)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    @Override /** Return the element at the specified index */
+    public E get(int index) {
+        checkIndex(index);
+        if(index == 0) {
+            return getFirst();
+        }
+        else if(index == size - 1) {
+            return getLast();
+        }
+        else {
+            Node<E> current = head.next;
+            if(index < size / 2) {
+                for(int i = 1; i < index; i++) {
+                    current = current.next;
+                }
+            }
+            else {
+                current = tail.previous;
+                for(int i = size - 2; i > index; i--) {
+                    current = current.previous;
+                }
+            }
+            
+            return current.element;
+        }
+    }
+    
+    @Override/** Return the index of the head matching element in 
+     *  this list. Return -1 if no match. */
+    public int indexOf(Object e) {
+        if(size == 0) {
+            return -1;
+        }
+        if(getFirst().equals((E)e)) {
+            return 0;
+        }
+        else if(getLast().equals((E)e)) {
+            return size - 1;
+        }
+        Node<E> current = head.next;
+        for(int i = 1; i < size - 1; i++, current = current.next) {
+            if(current.element.equals((E)e)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    @Override /** Return the index of the last matching element in 
+     *  this list. Return -1 if no match. */
+    public int lastIndexOf(Object e) {
+        if(size == 0) {
+            return -1;
+        }
+        Node<E> current = tail;
+        int lastIndex = -1;
+        for(int i = size - 1; i >= 0; i--, current = current.previous) {
+            if(current.element.equals(e)) {
+                lastIndex = size - i + 1;
+            }
+        }
+        return lastIndex;
+    }
+    
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException
+            ("Index: " + index + ", Size: " + size);
+    }
+    
+    @Override
     public ListIterator<E> listIterator() {
-        return new TwoWayLinkedListIterator<>();
+        return new TwoWayLinkedListIterator();
     }
     
     @Override
     public ListIterator<E> listIterator(int index) {
-        return new TwoWayLinkedListIterator<>(index);
+        return new TwoWayLinkedListIterator(index);
     }
 
     @Override
@@ -150,16 +303,24 @@ public class TwoWayLinkedList<E> extends AbstractSequentialList<E> {
         return size;
     }
 
-    public class TwoWayLinkedListIterator<E> implements ListIterator<E> {
-        private Node<E> current = (Node<E>)head; // Current index
-        private Node<E> last = (Node<E>)tail;
+    public class TwoWayLinkedListIterator implements ListIterator<E> {
+        private Node<E> current = head; // Current index
         
         public TwoWayLinkedListIterator() {
         }
         
         public TwoWayLinkedListIterator(int index) {
-            for(int i = 0; i < index; i++) {
-                current = current.next;
+            if(index < size / 2) {
+                current = head;
+                for(int i = 0; i < index; i++) {
+                    current = current.next;
+                }
+            }
+            else {
+                current = tail;
+                for(int i = size - 1; i > index; i--) {
+                    current = current.previous;
+                }
             }
         }
                 
@@ -177,24 +338,24 @@ public class TwoWayLinkedList<E> extends AbstractSequentialList<E> {
 
         @Override
         public boolean hasPrevious() {
-            return (last != null);
+            return (current != null);
         }
 
         @Override
         public E previous() {
-            E e = last.element;
-            last = last.previous;
+            E e = current.element;
+            current = current.previous;
             return e;
         }
 
         @Override
         public int nextIndex() {
-            return 1;
+            return indexOf(current.next.element);
         }
 
         @Override
         public int previousIndex() {
-            return 1;
+            return indexOf(current.previous.element);
         }
 
         @Override
