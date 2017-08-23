@@ -5,10 +5,8 @@ import java.util.Comparator;
 
 public class PriorityQueue<E> {
     private Heap<E> heap;
-    private Comparator<? super E> comparator;
-
+    
     public PriorityQueue(Comparator<? super E> comparator) {
-        this.comparator = comparator;
         heap = new Heap<E>(comparator);
     }
     
