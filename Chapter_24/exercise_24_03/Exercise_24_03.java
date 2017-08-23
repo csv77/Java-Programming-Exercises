@@ -27,12 +27,6 @@ public class Exercise_24_03 {
         }
         System.out.println("\n");
         
-//        iterator = list.listIterator(0);
-//        while(iterator.hasNext()) {
-//            System.out.print(iterator.nextIndex() + " ");
-//        }
-//        System.out.println("\n");
-        
         iterator = list.listIterator(5);
         while(iterator.hasNext()) {
             System.out.print(iterator.next() + " ");
@@ -72,6 +66,22 @@ public class Exercise_24_03 {
         System.out.println(list);
         
         System.out.println(list.lastIndexOf("Andrea"));
+        System.out.println(list.lastIndexOf("Marion"));
+        System.out.println(list.lastIndexOf("James"));
         
+        System.out.println(list.set(5, "Andrew"));
+        System.out.println(list);
+        
+        iterator = list.listIterator(0);
+        while(iterator.hasNext()) {
+            System.out.print(iterator.next() + " ");
+        }
+        System.out.println("\n");
+        
+        iterator = list.listIterator(list.size() - 1);
+        while(iterator.hasPrevious()) {
+            System.out.print(iterator.previous() + " ");
+        }
+        System.out.println("\n");
     }
 }

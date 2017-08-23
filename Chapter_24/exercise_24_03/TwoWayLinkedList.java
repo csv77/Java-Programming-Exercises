@@ -272,14 +272,26 @@ public class TwoWayLinkedList<E> extends AbstractSequentialList<E> {
         if(size == 0) {
             return -1;
         }
-        Node<E> current = tail;
+        Node<E> current = head;
         int lastIndex = -1;
-        for(int i = size - 1; i >= 0; i--, current = current.previous) {
+        for(int i = 0; i < size; i++, current = current.next) {
             if(current.element.equals(e)) {
-                lastIndex = size - i + 1;
+                lastIndex = i;
             }
         }
         return lastIndex;
+    }
+    
+    @Override /** Replace the element at the specified position 
+     *  in this list with the specified element. */
+    public E set(int index, E e) {
+        checkIndex(index);
+        Node<E> current = head;
+        for(int i = 0; i < index; i++, current = current.next) {
+        }
+        E temp = current.element;
+        current.element = e;
+        return temp;
     }
     
     private void checkIndex(int index) {
@@ -350,12 +362,12 @@ public class TwoWayLinkedList<E> extends AbstractSequentialList<E> {
 
         @Override
         public int nextIndex() {
-            return indexOf(current.next.element);
+            return 1;
         }
 
         @Override
         public int previousIndex() {
-            return indexOf(current.previous.element);
+            return 1;
         }
 
         @Override
