@@ -13,7 +13,11 @@ public class MyArrayList<E> extends MyAbstractList<E> {
         for (int i = 0; i < objects.length; i++)
             add(objects[i]); // Warning: don’t use super(objects)! 
     }
-
+    
+    public int getCapacity() {
+        return data.length;
+    }
+    
     @Override /** Add a new element at the specified index */
     public void add(int index, E e) {   
         // Ensure the index is in the right range
