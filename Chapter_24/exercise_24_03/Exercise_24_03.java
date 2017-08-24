@@ -22,9 +22,6 @@ public class Exercise_24_03 {
             list.add(6, "Julia");
             System.out.println(list + "\n");
 
-            list.remove("Julia");
-            System.out.println(list + "\n");
-
             ListIterator<String> iterator = list.listIterator(0);
             while(iterator.hasNext()) {
                 System.out.print(iterator.next() + " ");

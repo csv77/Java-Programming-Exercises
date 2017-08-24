@@ -179,19 +179,6 @@ public class TwoWayLinkedList<E> extends AbstractSequentialList<E> {
         }
     }
     
-    @Override
-    public boolean remove(Object e) {
-        int index = indexOf((E)e);
-        if(index == -1) {
-            return false;
-        }
-        else {
-            remove(index);
-            size--;
-            return true;
-        }
-    }
-    
     @Override /** Override toString() to return elements in the list */
     public String toString() {
         StringBuilder result = new StringBuilder("[");
