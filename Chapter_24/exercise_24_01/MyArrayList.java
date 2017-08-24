@@ -1,7 +1,7 @@
 package exercise_24_01;
 
 public class MyArrayList<E> extends MyAbstractList<E> {
-    public static final int INITIAL_CAPACITY = 16;
+    public static final int INITIAL_CAPACITY = 4;
     private E[] data = (E[])new Object[INITIAL_CAPACITY];
     
     /** Create an empty list */
