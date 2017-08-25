@@ -84,8 +84,6 @@ public class Exercise_24_10 extends Application {
     }
     
     public class StackPane extends Pane {
-        private final double x = 40;
-        private final double y = 80;
         private final double width = 30;
         private final double height = 20;
         
