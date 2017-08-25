@@ -1,6 +1,8 @@
 package exercise_24_11;
 
 import exercise_24_03.TwoWayLinkedList;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -132,6 +134,40 @@ public class Exercise_24_11 extends Application {
             }
             catch(IndexOutOfBoundsException ex) {
                 lbStatus.setText("The index is out of range.");
+            }
+        });
+        
+        btForward.setOnAction(e -> {
+            try{
+                if(list.size() == 0) {
+                    throw new NoSuchElementException();
+                }
+                StringBuilder text = new StringBuilder("Forward traversal: ");
+                ListIterator iterator = list.listIterator();
+                while(iterator.hasNext()) {
+                    text.append(iterator.next() + " ");
+                }
+                lbStatus.setText(text.toString());
+            }
+            catch(NoSuchElementException ex) {
+                lbStatus.setText("The list is empty.");
+            }
+        });
+        
+        btBackward.setOnAction(e -> {
+            try{
+                if(list.size() == 0) {
+                    throw new NoSuchElementException();
+                }
+                StringBuilder text = new StringBuilder("Backward traversal: ");
+                ListIterator iterator = list.listIterator(list.size() - 1);
+                while(iterator.hasPrevious()) {
+                    text.append(iterator.previous()+ " ");
+                }
+                lbStatus.setText(text.toString());
+            }
+            catch(NoSuchElementException ex) {
+                lbStatus.setText("The list is empty.");
             }
         });
     }
