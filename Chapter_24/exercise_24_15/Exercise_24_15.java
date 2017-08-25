@@ -109,5 +109,8 @@ public class Exercise_24_15 {
         System.out.println("List1 reseted to default. After list1.retainAll(list2)");
         System.out.println("list1: " + list1);
         System.out.println("list2: " + list2 + "\n");
+        
+        list1.clear();
+        System.out.println("List1 after clear(): " + list1);
     }
 }
