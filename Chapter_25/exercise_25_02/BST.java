@@ -305,6 +305,9 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
     
     /** Returns true if the tree is a full binary tree */
     public boolean isFullBST() {
+        if(root == null) {
+            return false;
+        }
         if(isFullBST(root, 0) == 0) {
             return true;
         }
