@@ -329,7 +329,7 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
         return currentValue;
     }
     
-    public int getSizeOfSubTree(TreeNode<E> currentRoot) {
+    protected int getSizeOfSubTree(TreeNode<E> currentRoot) {
         if(currentRoot == null) {
             return 0;
         }
