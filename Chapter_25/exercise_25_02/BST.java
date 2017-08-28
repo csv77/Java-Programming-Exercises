@@ -305,10 +305,15 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
     
     /** Returns true if the tree is a full binary tree */
     public boolean isFullBST() {
+        return size == (int)(Math.pow(2, height() + 1) - 1);
+    }
+    
+    /** Returns true if the tree is a full binary tree */
+    public boolean isFullBST2() {
         if(root == null) {
             return false;
         }
-        if(isFullBST(root, 0) == 0) {
+        if(isFullBST2(root, 0) == 0) {
             return true;
         }
         else {
@@ -316,15 +321,15 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
         }
     }
     
-    protected int isFullBST(TreeNode<E> currentRoot, int currentValue) {
+    protected int isFullBST2(TreeNode<E> currentRoot, int currentValue) {
         if(getSizeOfSubTree(currentRoot.left) != getSizeOfSubTree(currentRoot.right)) {
             currentValue++;
         }
         if(currentRoot.left != null) {
-            currentValue += isFullBST(currentRoot.left, currentValue);
+            currentValue += isFullBST2(currentRoot.left, currentValue);
         }
         if(currentRoot.right != null) {
-            currentValue += isFullBST(currentRoot.right, currentValue);
+            currentValue += isFullBST2(currentRoot.right, currentValue);
         }
         return currentValue;
     }
