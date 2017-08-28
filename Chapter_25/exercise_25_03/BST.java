@@ -309,52 +309,6 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
         return size == (int)(Math.pow(2, height() + 1) - 1);
     }
     
-    /** Returns true if the tree is a full binary tree */
-    public boolean isFullBST2() {
-        if(root == null) {
-            return false;
-        }
-        if(isFullBST2(root, 0) == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    
-    protected int isFullBST2(TreeNode<E> currentRoot, int currentValue) {
-        if(getSizeOfSubTree(currentRoot.left) != getSizeOfSubTree(currentRoot.right)) {
-            currentValue++;
-        }
-        if(currentRoot.left != null) {
-            currentValue += isFullBST2(currentRoot.left, currentValue);
-        }
-        if(currentRoot.right != null) {
-            currentValue += isFullBST2(currentRoot.right, currentValue);
-        }
-        return currentValue;
-    }
-    
-    protected int getSizeOfSubTree(TreeNode<E> currentRoot) {
-        if(currentRoot == null) {
-            return 0;
-        }
-        int size = 0;
-        LinkedList<TreeNode<E>> list = new LinkedList<>();
-        list.add(root);
-        while(!list.isEmpty()) {
-            size++;
-            TreeNode<E> current = list.remove();
-            if(current.left != null) {
-                list.add(current.left);
-            }
-            if(current.right != null) {
-                list.add(current.right);
-            }
-        }
-        return size;
-    }
-    
     /** Inorder traversal from the root */
     public void nonRecursiveInorder() {
         if(root == null) {
