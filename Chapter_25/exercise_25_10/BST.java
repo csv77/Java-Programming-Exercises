@@ -116,9 +116,9 @@ public class BST<E extends Comparable<E>> implements Tree<E>, Cloneable {
     /** This inner class is static, because it does not access 
         any instance members defined in its outer class */
     public static class TreeNode<E extends Comparable<E>> {
-        protected E element;
-        protected TreeNode<E> left;
-        protected TreeNode<E> right;
+        public E element;
+        public TreeNode<E> left;
+        public TreeNode<E> right;
 
         public TreeNode(E e) {
             element = e;
