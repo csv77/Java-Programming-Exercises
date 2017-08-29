@@ -459,11 +459,49 @@ public class BST<E extends Comparable<E>> implements Tree<E>, Cloneable {
     public BST<E> clone() {
         try {
             BST<E> treeClone = (BST)super.clone();
-            //treeClone.root = (TreeNode)
+            copyTreeNodes(treeClone.root, root);
             return treeClone;
         }
         catch (CloneNotSupportedException e) {
             return null;
+        }
+    }
+    
+    public void copyTreeNodes(TreeNode<E> rootCopy, TreeNode<E> root) {
+        if(root == null) {
+            return;
+        }
+        else {
+            rootCopy = new TreeNode(root.element);
+            if(root.left != null) {
+                copyTreeNodes(rootCopy.left, root.left);
+            }
+            if(root.right != null) {
+                copyTreeNodes(rootCopy.right, root.right);
+            }
+        }
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        BST<E> anotherTree = (BST<E>)o;
+        if(anotherTree.getSize() != this.getSize()) {
+            return false;
+        }
+        else {
+            return equals(anotherTree.root, root);
+        }
+    }
+    
+    public boolean equals(TreeNode<E> rootCopy, TreeNode<E> root) {
+        if(root == null && rootCopy == null) {
+            return true;
+        }
+        else if((root == null && rootCopy != null) || (root != null && rootCopy == null)) {
+            return false;
+        }
+        else {
+            return equals(root.left, rootCopy.left) && equals(root.right, rootCopy.right);
         }
     }
 }
