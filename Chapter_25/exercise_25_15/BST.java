@@ -1,6 +1,8 @@
 package exercise_25_15;
 
 import exercise_25_01.Tree;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class BST<E extends Comparable<E>> implements Tree<E> {
     protected TreeNode<E> root;
@@ -285,12 +287,49 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
     /** Returns the node for the specified element.
       * Returns null if the element is not in the tree. */
     public TreeNode<E> getNode(E element) {
-        java.util.ArrayList<TreeNode<E>> path = path(element);
-        if(path == null) {
-            return null;
+        TreeNode<E> current = root;
+
+        while(current != null) {
+            if(element.compareTo(current.element) < 0) {
+                current = current.left;
+            }
+            else if(element.compareTo(current.element) > 0) {
+                current = current.right;
+            }
+            else
+                return current;
+        }
+        return null;
+    }
+    
+    /** Returns true if the node for the element is a leaf */
+    public boolean isLeaf(E element) {
+        TreeNode<E> node = getNode(element);
+        if(node == null) {
+            return false;
+        }
+        else if(node.left == null && node.right == null) {
+            return true;
         }
         else {
-            return path.get(path.size() - 1);
+            return false;
         }
+    }
+    
+    /** Returns the path of elements from the specified element
+      * to the root in an array list. */
+    public ArrayList<E> getPath(E e) {
+        ArrayList<E> list = new ArrayList<>();
+        TreeNode<E> current = getNode(e);
+        if(current != null) {
+            while(current != root) {
+                list.add(current.element);
+                current = current.parent;
+            }
+
+            list.add(root.element);
+            return list;
+        }
+        return list;
     }
 }
