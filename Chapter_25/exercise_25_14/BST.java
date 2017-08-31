@@ -51,7 +51,7 @@ public class BST<E> implements Tree<E>, Cloneable {
             // Locate the parent node
             TreeNode<E> parent = null;
             TreeNode<E> current = root;
-            while(current != null)
+            while(current != null) 
                 if(comparator.compare(e, current.element) < 0) {
                     parent = current;
                     current = current.left;
@@ -62,7 +62,7 @@ public class BST<E> implements Tree<E>, Cloneable {
                 }
                 else
                     return false; // Duplicate node not inserted
-
+            
             // Create the new node and attach it to the parent node
             if(comparator.compare(e, parent.element) < 0)
                 parent.left = createNewNode(e);
