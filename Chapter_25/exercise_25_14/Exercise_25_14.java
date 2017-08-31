@@ -14,6 +14,9 @@ public class Exercise_25_14 {
         tree.add(new Circle(10));
         tree.add(new Rectangle(10, 10));
         
+        System.out.println("Inorder traversel:");
         tree.inorder();
+        System.out.println("\n\nPostorder traversal:");
+        tree.postorder();
     }
 }
