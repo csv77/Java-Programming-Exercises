@@ -24,19 +24,20 @@ public class Exercise_25_17 {
                 System.out.println("Weight must be less than " + MAXWEIGHT);
             }
         }
-        
+
         ArrayList<Container> containers = new ArrayList<>();
-        containers.add(new Container());
         
         for(int i = 0; i < weights.length; i++) {
-            for(int j = 0; j < containers.size(); j++) {
+            boolean foundContainer = false;
+            for(int j = 0; j < containers.size() && !foundContainer; j++) {
                 if(containers.get(j).addObject(weights[i])) {
-                    break;
+                    foundContainer = true;
                 }
-                else {
-                    containers.add(new Container());
-                    containers.get(containers.size() - 1).addObject(weights[i]);
-                }
+            }
+            if(!foundContainer) {
+                Container newContainer = new Container();
+                newContainer.addObject(weights[i]);
+                containers.add(newContainer);
             }
         }
         
