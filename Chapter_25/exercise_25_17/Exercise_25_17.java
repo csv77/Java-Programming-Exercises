@@ -33,9 +33,11 @@ public class Exercise_25_17 {
                 if(containers.get(j).addObject(weights[i])) {
                     break;
                 }
+                else {
+                    containers.add(new Container());
+                    containers.get(containers.size() - 1).addObject(weights[i]);
+                }
             }
-            containers.add(new Container());
-            containers.get(containers.size() - 1).addObject(weights[i]);
         }
         
         for(int i = 0; i < containers.size(); i++) {
