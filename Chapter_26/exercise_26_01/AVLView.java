@@ -11,7 +11,7 @@ public class AVLView extends Pane {
     private double radius = 15;
     private double vGap = 50;
 
-    AVLView(AVLTree<Integer> tree) {
+    public AVLView(AVLTree<Integer> tree) {
         this.tree = tree;
         setStatus("Tree is empty");
     }
