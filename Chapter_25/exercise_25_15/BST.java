@@ -216,12 +216,12 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
             // Eliminate rightmost node
             if(rightMost.parent.right == rightMost) {
                 rightMost.parent.right = rightMost.left;
-                rightMost.left.parent = rightMost.parent.right;
+                rightMost.left.parent = rightMost.parent;
             }
             else {
                 // Special case: parentOfRightMost == current
                 rightMost.parent.left = rightMost.left;
-                rightMost.left.parent = rightMost.parent.left;
+                rightMost.left.parent = rightMost.parent;
             }
         }
 
