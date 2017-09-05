@@ -3,25 +3,15 @@ package exercise_26_04;
 public class Exercise_26_04 {
 
     public static void main(String[] args) {
-        AVLTree<String> tree = new AVLTree<String>();
-        tree.insert("Michael");
-        tree.insert("Adam");
-        tree.insert("Michelle");
-        tree.insert("Susan");
+        AVLTree<Integer> tree = new AVLTree<Integer>();
+        for(int i = 1; i <= 10; i++) {
+            tree.insert(i);
+        }
         
-        tree.inorder();
-        tree.delete("Michelle");
-        
-        System.out.println();
-        tree.inorder();
-        System.out.println();
-        
-        tree.insert("Simon");
-        
-        tree.inorder();
-        System.out.println();
-        
-        System.out.println(tree.getPath("Simon"));
-        System.out.println(tree.getPath("Adam"));
+        for(Integer i : tree) {
+            if(tree.isLeaf(i)) {
+                System.out.println(i + " is leaf.");
+            }
+        }
     }
 }
