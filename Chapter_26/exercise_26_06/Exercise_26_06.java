@@ -38,7 +38,7 @@ public class Exercise_26_06 {
             System.out.print(e + " ");
         }
         System.out.println();
-  }
+    }
 
     public static void printTree(BST tree) {
         System.out.print("\nInorder (sorted): ");
