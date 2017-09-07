@@ -113,6 +113,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     @Override
     public V put(K key, V value) {
         int index = hash(key.hashCode());
+        int i = index;
         if(get(key) != null) {
             while(table.get(index) != null) {
                 if(table.get(index).getKey().equals(key)) {
@@ -120,7 +121,8 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
                     table.get(index).value = value; 
                     return oldValue;
                 }
-                index = (index + 1) % capacity;
+                index = (i + 1) % capacity;
+                i++;
             }
         }
 
@@ -133,8 +135,12 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
         MyMap.Entry<K, V> entry = new MyMap.Entry(key, value);
         
+        index = hash(key.hashCode());
+        i = index;
+        
         while(table.get(index) != null) {
-            index = (index + 1) % capacity;
+            index = (i + 1) % capacity;
+            i++;
         }
         table.add(index, entry);
         
