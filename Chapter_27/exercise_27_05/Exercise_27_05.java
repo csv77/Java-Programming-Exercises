@@ -3,7 +3,7 @@ package exercise_27_05;
 public class Exercise_27_05 {
 
     public static void main(String[] args) {
-        MySet<String> set = new MyHashSet<>();
+        MyHashSet<String> set = new MyHashSet<>();
         set.add("Smith");
         set.add("Anderson");
         set.add("Lewis");
