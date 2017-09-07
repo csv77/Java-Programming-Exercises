@@ -185,15 +185,15 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     public Set<V> values() {
     Set<V> set = new HashSet<>();
 
-    for(int i = 0; i < capacity; i++) {
-        if(table[i] != null) {
-            LinkedList<Entry<K, V>> bucket = table[i]; 
-            for(Entry<K, V> entry: bucket)
-                set.add(entry.getValue()); 
+        for(int i = 0; i < capacity; i++) {
+            if(table[i] != null) {
+                LinkedList<Entry<K, V>> bucket = table[i]; 
+                for(Entry<K, V> entry: bucket)
+                    set.add(entry.getValue()); 
+            }
         }
-    }
 
-    return set;
+        return set;
     }
 
     private int hash(int hashCode) {
