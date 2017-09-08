@@ -1,5 +1,6 @@
 package exercise_27_06;
 
+import java.util.Set;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -37,7 +38,7 @@ public class Exercise_27_06 extends Application {
         map.put(10, 10);
         map.put(11, 11);
         
-        MyHashPane hashPane = new MyHashPane(map);
+        MyHashPane hashPane = new MyHashPane();
         ScrollPane scrollPane = new ScrollPane(hashPane);
         scrollPane.setStyle("-fx-border-color : black");
         borderPane.setCenter(scrollPane);
@@ -48,8 +49,10 @@ public class Exercise_27_06 extends Application {
         
         tfInitialTableSize.setPrefColumnCount(3);
         tfInitialTableSize.setAlignment(Pos.BASELINE_RIGHT);
+        tfInitialTableSize.setText(map.getCapacity() + "");
         tfLoadFactorThreshold.setPrefColumnCount(3);
         tfLoadFactorThreshold.setAlignment(Pos.BASELINE_RIGHT);
+        tfLoadFactorThreshold.setText(map.getLoadFactorThreshold() + "");
         
         Label lbInitialTableSize = new Label("Enter Initial Table Size:", tfInitialTableSize);
         lbInitialTableSize.setContentDisplay(ContentDisplay.RIGHT);
@@ -78,24 +81,30 @@ public class Exercise_27_06 extends Application {
         vBoxForHBoxes.getChildren().addAll(hBoxForHashFeatures, hBoxForAll);
         borderPane.setBottom(vBoxForHBoxes);
         
-        Scene scene = new Scene(borderPane, 600, 300);
+        Label lbStatus = new Label();
+        borderPane.setTop(lbStatus);
+        BorderPane.setAlignment(lbStatus, Pos.CENTER);
+        
+        Scene scene = new Scene(borderPane, 600, 400);
         primaryStage.setTitle("Exercise_27_06");
         primaryStage.setScene(scene);
         primaryStage.show();
+        
+        tfKey.requestFocus();
         
         btSearch.setOnAction(e -> {
             Integer key;
             try {
                 key = Integer.parseInt(tfKey.getText());
                 if(map.containsKey(key)) {
-                    hashPane.tStatus.setText(key + " is in the set.");
+                    lbStatus.setText(key + " is in the set.");
                 }
                 else {
-                    hashPane.tStatus.setText(key + " is not in the set.");
+                    lbStatus.setText(key + " is not in the set.");
                 }
             }
             catch (NumberFormatException ex) {
-                hashPane.tStatus.setText(tfKey.getText() + " is not in the set.");
+                lbStatus.setText(tfKey.getText() + " is not in the set.");
             }
         });
         
@@ -103,22 +112,23 @@ public class Exercise_27_06 extends Application {
             try {
                 Integer key = Integer.parseInt(tfKey.getText());
                 if(map.get(key) != null) {
-                    hashPane.tStatus.setText(key + " is already in the set.");
+                    lbStatus.setText(key + " is already in the set.");
                     hashPane.displayHash();
                 }
                 else {
                     map.put(key, key);
+                    lbStatus.setText(key + " was put in the set.");
                     hashPane.displayHash();
-                    hashPane.tStatus.setText("");
                 }
             }
             catch (NumberFormatException ex) {
-                hashPane.tStatus.setText(tfKey.getText() + " is not an integer.");
+                lbStatus.setText(tfKey.getText() + " is not an integer.");
             }
         });
         
         btRemoveAll.setOnAction(e -> {
             map.clear();
+            lbStatus.setText("All element was removed from the set.");
             hashPane.displayHash();
         });
         
@@ -127,42 +137,69 @@ public class Exercise_27_06 extends Application {
                 Integer key = Integer.parseInt(tfKey.getText());
                 if(map.get(key) != null) {
                     map.remove(key);
-                    hashPane.tStatus.setText("");
+                    lbStatus.setText(key + " was removed from the set.");
                     hashPane.displayHash();
                 }
                 else {
-                    hashPane.tStatus.setText(key + " is not in the set.");
+                    lbStatus.setText(key + " is not in the set.");
                     hashPane.displayHash();
                 }
             }
             catch (NumberFormatException ex) {
-                hashPane.tStatus.setText(tfKey.getText() + " is not an integer.");
+                lbStatus.setText(tfKey.getText() + " is not an integer.");
             }
         });
         
         tfInitialTableSize.setOnAction(e -> {
-            
+            try {
+                Integer capacity = Integer.parseInt(tfInitialTableSize.getText());
+                if((float)map.size() / capacity >= map.getLoadFactorThreshold()) {
+                    System.out.println((float)map.size() / capacity);
+                    lbStatus.setText("Number of keys / size must be higher than threshold.");
+                }
+                else {
+                    Set<MyMap.Entry<Integer, Integer>> entrySet = map.entrySet();
+                    map = new MyHashMap<Integer, Integer>(capacity);
+                    for(MyMap.Entry<Integer, Integer> entry : entrySet) {
+                        map.put(entry.getKey(), entry.getValue());
+                    }
+                    hashPane.displayHash();
+                    lbStatus.setText("Map size was modified to " + capacity + ".");
+                }
+            }
+            catch (NumberFormatException ex) {
+                lbStatus.setText(tfInitialTableSize.getText() + " is not an integer.");
+            }
+        });
+        
+        tfLoadFactorThreshold.setOnAction(e -> {
+            try {
+                Float threshold = Float.parseFloat(tfLoadFactorThreshold.getText());
+                Set<MyMap.Entry<Integer, Integer>> entrySet = map.entrySet();
+                int capacity = map.getCapacity();
+                map = new MyHashMap<Integer, Integer>(capacity, threshold);
+                for(MyMap.Entry<Integer, Integer> entry : entrySet) {
+                    map.put(entry.getKey(), entry.getValue());
+                }
+                lbStatus.setText("Threshold was modified to " + threshold + ".");
+                hashPane.displayHash();
+            }
+            catch (NumberFormatException ex) {
+                lbStatus.setText(tfLoadFactorThreshold.getText() + " is not a float.");
+            }
         });
     }
     
     public class MyHashPane extends Pane {
-        private MyHashMap<Integer, Integer> myMap;
         private int x = 40;
         private int y = 40;
         private int width = 40;
         private int height = 20;
-        private Text tStatus;
-
-        public MyHashPane(MyHashMap<Integer, Integer> myMap) {
-            this.myMap = myMap;
-            tStatus = new Text(x - 20, y + height * myMap.table.length + 20, "");
-            setStatus();
-        }
         
         public void setStatus() {
-            int size = myMap.getCapacity();
-            int numberOfKeys = myMap.size();
-            float threshold = myMap.getLoadFactorThreshold();
+            int size = map.getCapacity();
+            int numberOfKeys = map.size();
+            float threshold = map.getLoadFactorThreshold();
             String text = new String("Current table size: " + size + ". Number of keys = " +
                     numberOfKeys + ". Current load: " + ((double)numberOfKeys / size) +
                     ". Load factor threshold: " + threshold);
@@ -171,22 +208,20 @@ public class Exercise_27_06 extends Application {
         
         public void displayHash() {
             getChildren().clear();
-            for(int i = 0; i < myMap.getCapacity(); i++) {
+            for(int i = 0; i < map.getCapacity(); i++) {
                 Rectangle rectangle = new Rectangle(x, y + i * height, width, height);
                 rectangle.setStroke(Color.BLACK);
                 rectangle.setFill(Color.TRANSPARENT);
                 
                 Text tKey = new Text();
                 
-                if(myMap.table[i] != null) {
-                    tKey = new Text(x + 15, y + i * height + 15, myMap.table[i].getValue() + "");
+                if(map.table[i] != null) {
+                    tKey = new Text(x + 15, y + i * height + 15, map.table[i].getValue() + "");
                 }
                 Text tIndex = new Text(x - 25, y + i * height + 15, "[" + i + "]");
                 
                 getChildren().addAll(rectangle, tIndex, tKey);
             }
-            tStatus.setY(y + height * myMap.table.length + 20);
-            getChildren().add(tStatus);
             setStatus();
         }
     }

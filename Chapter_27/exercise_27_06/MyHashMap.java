@@ -1,6 +1,5 @@
 package exercise_27_06;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,11 +30,10 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         if(initialCapacity > MAXIMUM_CAPACITY)
             this.capacity = MAXIMUM_CAPACITY;
         else
-            this.capacity = trimToPowerOf2(initialCapacity);
+            this.capacity = initialCapacity;
 
         this.loadFactorThreshold = loadFactorThreshold;    
         table = new MyMap.Entry[capacity];
-                
     }
 
     public void setLoadFactorThreshold(float loadFactorThreshold) {
