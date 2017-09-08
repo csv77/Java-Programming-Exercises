@@ -22,8 +22,8 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         this(DEFAULT_INITIAL_CAPACITY, DEFAULT_MAX_LOAD_FACTOR);    
     }
 
-    public MyHashMap(int initialCapacity) { 
-        this(initialCapacity, DEFAULT_MAX_LOAD_FACTOR);    
+    public MyHashMap(int initialCapacity) {
+        this(initialCapacity, DEFAULT_MAX_LOAD_FACTOR);
     }
 
     public MyHashMap(int initialCapacity, float loadFactorThreshold) { 
@@ -94,9 +94,12 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
             if(table[index].getKey().equals(key)) {
                 return table[index].getValue();
             }
-            index = (i++ + 1) % capacity;
+            index = (index + 1) % capacity;
+            if(index == i) {
+                return null;
+            }
         }
-
+        
         return null;
     }
 
@@ -120,21 +123,11 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
     @Override
     public V put(K key, V value) {
-        int index = hash(key.hashCode());
-        int i = index;
-        if(get(key) != null) {
-            while(table[index] != null) {
-                if(table[index].getKey().equals(key)) {
-                    V oldValue = table[index].getValue();
-                    table[index].value = value; 
-                    return oldValue;
-                }
-                index = (i + 1) % capacity;
-                i++;
-            }
+        if(this.containsKey(key)) {
+            return value;
         }
 
-        if(size >= capacity * loadFactorThreshold) {
+        if(size + 1 > capacity * loadFactorThreshold) {
             if(capacity == MAXIMUM_CAPACITY)
                 throw new RuntimeException("Exceeding maximum capacity");
 
@@ -143,12 +136,10 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
 
         MyMap.Entry<K, V> entry = new MyMap.Entry(key, value);
         
-        index = hash(key.hashCode());
-        i = index;
+        int index = hash(key.hashCode());
         
         while(table[index] != null) {
-            index = (i + 1) % capacity;
-            i++;
+            index = (index + 1) % capacity;
         }
         table[index] = entry;
         
@@ -217,6 +208,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     private void rehash() {
         Set<MyMap.Entry<K, V>> set = entrySet();
         capacity <<= 1;
+        
         table = new MyMap.Entry[capacity];
         size = 0;
         
