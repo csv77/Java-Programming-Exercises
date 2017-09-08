@@ -154,7 +154,6 @@ public class Exercise_27_06 extends Application {
             try {
                 Integer capacity = Integer.parseInt(tfInitialTableSize.getText());
                 if((float)map.size() / capacity >= map.getLoadFactorThreshold()) {
-                    System.out.println((float)map.size() / capacity);
                     lbStatus.setText("Number of keys / size must be higher than threshold.");
                 }
                 else {
