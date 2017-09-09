@@ -182,7 +182,8 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     }
 
     private int hash(int hashCode) {
-        return supplementalHash(hashCode) & (capacity - 1);
+        return hashCode % capacity;
+//        return supplementalHash(hashCode) & (capacity - 1);
     }
 
     private static int supplementalHash(int h) {
