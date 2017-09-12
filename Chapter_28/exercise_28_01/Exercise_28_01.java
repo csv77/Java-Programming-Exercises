@@ -44,11 +44,6 @@ public class Exercise_28_01 {
         
         AbstractGraph.Tree tree = graph.dfs(0);
         
-        if(tree.getNumberOfVerticesFound() == graph.getSize()) {
-            System.out.println("The graph is connected.");
-        }
-        else {
-            System.out.println("The graph is not connected.");
-        }
+        System.out.println("The graph is " + (tree.getNumberOfVerticesFound() == graph.getSize() ? "" : "not") + " connected.");
     }
 }
