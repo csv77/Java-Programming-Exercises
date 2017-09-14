@@ -4,7 +4,6 @@ import exercise_28_01.UnweightedGraph;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 public class UnweightedGraphWithNonrecursiveDFS<V> extends UnweightedGraph<V> {
     
@@ -29,7 +28,7 @@ public class UnweightedGraphWithNonrecursiveDFS<V> extends UnweightedGraph<V> {
     
     @Override
     public Tree dfs(int v) {
-        Stack<Integer> stack = new Stack<>();
+        LinkedList<Integer> stack = new LinkedList<>();
         List<Integer> searchOrder = new ArrayList<>();
         int[] parent = new int[vertices.size()];
         for(int i = 0; i < parent.length; i++) {
