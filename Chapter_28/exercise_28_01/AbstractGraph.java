@@ -152,6 +152,7 @@ public abstract class AbstractGraph<V> implements Graph<V> {
             this.v = v;
         }
 
+        @Override
         public boolean equals(Object o) {
             return u == ((Edge)o).u && v == ((Edge)o).v; 
         }
