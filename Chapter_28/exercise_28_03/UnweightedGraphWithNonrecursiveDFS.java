@@ -29,7 +29,7 @@ public class UnweightedGraphWithNonrecursiveDFS<V> extends UnweightedGraph<V> {
     
     @Override
     public Tree dfs(int v) {
-        LinkedList<Integer> stack = new LinkedList<>();
+        Stack<Integer> stack = new Stack<>();
         List<Integer> searchOrder = new ArrayList<>();
         int[] parent = new int[vertices.size()];
         for(int i = 0; i < parent.length; i++) {
@@ -40,19 +40,32 @@ public class UnweightedGraphWithNonrecursiveDFS<V> extends UnweightedGraph<V> {
         
         stack.push(v);
         isVisited[v] = true;
+        searchOrder.add(v);
         
         while(!stack.isEmpty()) {
             int x = stack.peek();
-            for(Edge e: neighbors.get(x)) {
-                if(!isVisited[e.v]) {
-                    stack.push(e.v);
-                    parent[e.v] = x;
-                    isVisited[e.v] = true;
-                }
+            int index = unvisitedNeighbor(neighbors.get(x), isVisited);
+            if(index != -1) {
+                Edge e = neighbors.get(x).get(index);
+                stack.push(e.v);
+                searchOrder.add(e.v);
+                parent[e.v] = x;
+                isVisited[e.v] = true;
             }
-            searchOrder.add(stack.pop());
+            else {
+                stack.pop();
+            }
         }
         
         return new Tree(v, parent, searchOrder);
+    }
+    
+    private int unvisitedNeighbor(List<Edge> neighborEdges, boolean[] isVisited) {
+        for(Edge e : neighborEdges) {
+            if(!isVisited[e.v]) {
+                return neighborEdges.indexOf(e);
+            }
+        }
+        return -1;
     }
 }
