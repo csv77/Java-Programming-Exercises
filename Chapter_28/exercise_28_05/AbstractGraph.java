@@ -234,6 +234,43 @@ public abstract class AbstractGraph<V> implements Graph<V> {
             return null;
         }
     }
+    
+    public boolean isCyclic() {
+        List<Integer> allVertices = new ArrayList<>();
+        for(int i = 0; i < vertices.size(); i++) {
+            allVertices.add(i);
+        }  
+
+        int[] parent = new int[vertices.size()];
+        for(int i = 0; i < parent.length; i++)
+            parent[i] = -1;
+
+        boolean[] isVisited = new boolean[vertices.size()];
+
+        while(allVertices.size() > 0) {
+            int v = allVertices.get(0);
+            if(isCyclic(v, parent, allVertices, isVisited))
+                return true;
+        }
+        return false;
+    }
+
+    private boolean isCyclic(int u, int[] parent, List<Integer> allVertices, boolean[] isVisited) {  
+        allVertices.remove(new Integer(u));
+        isVisited[u] = true;
+
+        for(Edge e : neighbors.get(u)) {
+            if(!isVisited[e.v]) {
+                parent[e.v] = u;
+                return isCyclic(e.v, parent, allVertices, isVisited);
+            }
+            else if(parent[u] != e.v) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     /** Tree inner class inside the AbstractGraph class */
     /** To be discussed in Section 28.5 */
