@@ -1,7 +1,6 @@
 package exercise_28_06;
 
 import exercise_28_05.UnweightedGraph;
-import java.util.List;
 
 public class Exercise_28_06 {
 
