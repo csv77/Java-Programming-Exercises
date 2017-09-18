@@ -272,6 +272,46 @@ public abstract class AbstractGraph<V> implements Graph<V> {
         return false;
     }
     
+    public boolean isBipartite() {
+        ArrayList<Integer> allVertices = new ArrayList<>();
+        for(int i = 0; i < vertices.size(); i++) {
+            allVertices.add(i);
+        }
+        int[] parent = new int[vertices.size()];
+        int[] depth = new int[vertices.size()];
+        for (int i = 0; i < parent.length; i++) {
+            parent[i] = -1;
+            depth[i] = 0;
+        }
+
+        LinkedList<Integer> queue = new LinkedList<>();
+        boolean[] isVisited = new boolean[vertices.size()];
+        
+        while (allVertices.size() > 0) {
+            int v = allVertices.get(0);
+            queue.offer(v);
+            isVisited[v] = true;
+            
+            while(!queue.isEmpty()) {
+                int u = queue.poll();
+                allVertices.remove(new Integer(u));
+                
+                for(Edge w : neighbors.get(u)) {
+                    if(!isVisited[w.v]) {
+                        queue.offer(w.v);
+                        parent[w.v] = u;
+                        depth[w.v] = depth[u] + 1;
+                        isVisited[w.v] = true;
+                    }
+                    else if(depth[w.v] == depth[u]) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
     /** Tree inner class inside the AbstractGraph class */
     /** To be discussed in Section 28.5 */
     public class Tree {
