@@ -12,8 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Exercise_28_11 extends Application {
@@ -34,11 +32,12 @@ public class Exercise_28_11 extends Application {
         
         HBox hBoxForNodes = new HBox(5);
         hBoxForNodes.getChildren().add(pane);
-        hBoxForNodes.setStyle("-fx-border-color : blue");
         hBoxForNodes.setPadding(new Insets(2));
+        hBoxForNodes.setId("hboxnodes");
         borderPane.setCenter(hBoxForNodes);
         
         Scene scene = new Scene(borderPane, 300, 150);
+        scene.getStylesheets().add(exercise_28_11.Exercise_28_11.class.getResource("style.css").toExternalForm());
         primaryStage.setTitle("Exercise_28_11");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -72,7 +71,7 @@ public class Exercise_28_11 extends Application {
         public NineTailPane() {
             for(int i = 0; i < 9; i++) {
                 Label lbHOrT = new Label("H");
-                lbHOrT.setFont(Font.font("Courier New", FontWeight.BOLD, 30));
+                lbHOrT.setId("labels");
                 this.add(lbHOrT, i % 3, i / 3);
                 lbHOrT.setOnMouseClicked(e -> {
                     if(lbHOrT.getText().equals("H")) {
@@ -83,7 +82,7 @@ public class Exercise_28_11 extends Application {
                     }
                 });
             }
-            this.setStyle("-fx-border-color : black");
+            this.setId("pane");
         }
         
         public NineTailPane(char[] node, char[] previousNode) {
@@ -92,12 +91,14 @@ public class Exercise_28_11 extends Application {
             for(int i = 0; i < 9; i++) {
                 Label lbHOrT = new Label(node[i] + "");
                 if(node[i] != previousNode[i]) {
-                    lbHOrT.setStyle("-fx-text-fill : red");
+                    lbHOrT.setId("labelwithred");
                 }
-                lbHOrT.setFont(Font.font("Courier New", FontWeight.BOLD, 30));
+                else {
+                    lbHOrT.setId("labels");
+                }
                 this.add(lbHOrT, i % 3, i / 3);
             }
-            this.setStyle("-fx-border-color : black");
+            this.setId("pane");
         }
         
         public void setInitialNode() {

@@ -1,0 +1,20 @@
+#hboxnodes {
+    -fx-border-color: black;
+}
+
+#pane {
+    -fx-border-color: black;
+}
+
+#labels {
+    -fx-font-family: "Courier New";
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
+
+#labelwithred {
+    -fx-text-fill: red;
+    -fx-font-family: "Courier New";
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
