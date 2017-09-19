@@ -3,8 +3,6 @@ package exercise_28_11;
 import java.util.List;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
