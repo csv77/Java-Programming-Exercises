@@ -36,3 +36,8 @@ HBox {
     -fx-font-weight: bold;
     -fx-font-size: 30px;
 }
+
+#line {
+    -fx-stroke: deepskyblue;
+    -fx-stroke-width: 3;
+}
