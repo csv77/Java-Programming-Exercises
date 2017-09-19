@@ -1,9 +1,22 @@
-#hboxnodes {
+HBox {
+    -fx-spacing: 5;
+    -fx-alignment: center;
+}
+
+#hboxfornodes {
     -fx-border-color: black;
+    -fx-padding: 2;
+    -fx-alignment: left;
 }
 
 #pane {
     -fx-border-color: black;
+}
+
+.button {
+    -fx-font-family: "Ariel";
+    -fx-font-weight: bold;
+    -fx-background-radius: 5, 5;
 }
 
 #labels {

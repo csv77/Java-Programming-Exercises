@@ -21,23 +21,21 @@ public class Exercise_28_11 extends Application {
     @Override
     public void start(Stage primaryStage) {
         BorderPane borderPane = new BorderPane();
-        borderPane.setPadding(new Insets(2));
-        HBox hBoxForButtons = new HBox(5);
-        hBoxForButtons.setAlignment(Pos.CENTER);
+        HBox hBoxForButtons = new HBox();
         
         Button btSolve = new Button("Solve");
         Button btStart = new Button("Start Over");
         hBoxForButtons.getChildren().addAll(btSolve, btStart);
         borderPane.setBottom(hBoxForButtons);
         
-        HBox hBoxForNodes = new HBox(5);
+        HBox hBoxForNodes = new HBox();
         hBoxForNodes.getChildren().add(pane);
-        hBoxForNodes.setPadding(new Insets(2));
-        hBoxForNodes.setId("hboxnodes");
+        hBoxForNodes.setId("hboxfornodes");
         borderPane.setCenter(hBoxForNodes);
         
         Scene scene = new Scene(borderPane, 300, 150);
-        scene.getStylesheets().add(exercise_28_11.Exercise_28_11.class.getResource("style.css").toExternalForm());
+        //scene.getStylesheets().add(exercise_28_11.Exercise_28_11.class.getResource("style.css").toExternalForm());
+        scene.getStylesheets().add("file:///c:/egyéb/SZE/Intro_to_Java_Programming_10th_exercises/Java-Programming-Exercises/Chapter_28/exercise_28_11/style.css");
         primaryStage.setTitle("Exercise_28_11");
         primaryStage.setScene(scene);
         primaryStage.show();
