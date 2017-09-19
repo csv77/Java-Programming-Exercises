@@ -6,7 +6,7 @@ HBox {
 #hboxfornodes {
     -fx-border-color: black;
     -fx-padding: 2;
-    -fx-alignment: left;
+    -fx-alignment: bottom-left;
 }
 
 #pane {
