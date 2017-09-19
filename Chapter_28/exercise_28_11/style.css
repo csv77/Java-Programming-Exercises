@@ -19,6 +19,11 @@ HBox {
     -fx-background-radius: 5, 5;
 }
 
+.label {
+    -fx-font-family: "Ariel";
+    -fx-font-weight: bold;
+}
+
 #labels {
     -fx-font-family: "Courier New";
     -fx-font-weight: bold;
