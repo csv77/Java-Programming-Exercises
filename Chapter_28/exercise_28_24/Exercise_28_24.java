@@ -19,7 +19,7 @@ public class Exercise_28_24 extends Application {
     @Override
     public void start(Stage primaryStage) {
         Scene scene = new Scene(new CirclePane(), 450, 350);
-        primaryStage.setTitle("Exercise_28_22");
+        primaryStage.setTitle("Exercise_28_24");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -27,20 +27,32 @@ public class Exercise_28_24 extends Application {
     class CirclePane extends Pane {
         public CirclePane() {
             this.setOnMouseClicked(e -> {
-                if(!isInsideACircle(new Point2D(e.getX(), e.getY()))) { 
-                    Circle circle = new Circle(e.getX(), e.getY(), 20);
-                    getChildren().add(circle);
-                    colorConnectedComponents();
+                Circle circle = clickedCircle(new Point2D(e.getX(), e.getY()));
+                if(circle != null) { 
+                    getChildren().remove(circle);
                 }
+                else {
+                    getChildren().add(new Circle(e.getX(), e.getY(), 20));
+                }
+                colorConnectedComponents();
             });
+            
+            for(Node node : getChildren()) {
+                ((Circle)node).setOnMouseClicked(e -> {
+                    if(((Circle)node).contains(e.getX(), e.getY())) {
+                        getChildren().remove(node);
+                        colorConnectedComponents();
+                    }
+                });
+            }
         }
 
-        private boolean isInsideACircle(Point2D p) {
+        private Circle clickedCircle(Point2D p) {
             for(Node circle: this.getChildren())
                 if(circle.contains(p))
-                    return true;
+                    return (Circle)circle;
 
-            return false;
+            return null;
         }
 
         private void colorConnectedComponents() {
