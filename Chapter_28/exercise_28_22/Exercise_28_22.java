@@ -22,7 +22,7 @@ public class Exercise_28_22 extends Application {
         primaryStage.setTitle("Exercise_28_22");
         primaryStage.setScene(scene);
         primaryStage.show();
-      }
+    }
 
     class CirclePane extends Pane {
         public CirclePane() {
