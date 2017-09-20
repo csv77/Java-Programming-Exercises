@@ -36,15 +36,6 @@ public class Exercise_28_24 extends Application {
                 }
                 colorConnectedComponents();
             });
-            
-            for(Node node : getChildren()) {
-                ((Circle)node).setOnMouseClicked(e -> {
-                    if(((Circle)node).contains(e.getX(), e.getY())) {
-                        getChildren().remove(node);
-                        colorConnectedComponents();
-                    }
-                });
-            }
         }
 
         private Circle clickedCircle(Point2D p) {
