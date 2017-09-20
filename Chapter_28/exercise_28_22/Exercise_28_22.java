@@ -19,7 +19,7 @@ public class Exercise_28_22 extends Application {
     @Override
     public void start(Stage primaryStage) {
         Scene scene = new Scene(new CirclePane(), 450, 350);
-        primaryStage.setTitle("Exercise_28_21");
+        primaryStage.setTitle("Exercise_28_22");
         primaryStage.setScene(scene);
         primaryStage.show();
       }
