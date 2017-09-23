@@ -11,12 +11,12 @@ public class Exercise_28_13 {
         String s = input.nextLine(); 
         char[] initialNode = s.toCharArray();
 
-        NineTailModel4By4 model = new NineTailModel4By4();
-        List<Integer> path = model.getShortestPath(NineTailModel4By4.getIndex(initialNode));
+        TailModel model = new TailModel();
+        List<Integer> path = model.getShortestPath(TailModel.getIndex(initialNode));
         if(path != null) {
             System.out.println("The steps to flip the coins are ");
             for (int i = 0; i < path.size(); i++) {
-                NineTailModel4By4.printNode(NineTailModel4By4.getNode(path.get(i)));  
+                TailModel.printNode(TailModel.getNode(path.get(i)));  
             }
         }
         else {

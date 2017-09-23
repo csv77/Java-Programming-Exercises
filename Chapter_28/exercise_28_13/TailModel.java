@@ -4,12 +4,12 @@ import exercise_28_05.AbstractGraph;
 import exercise_28_05.UnweightedGraph;
 import java.util.*;
 
-public class NineTailModel4By4 {
+public class TailModel {
     public final static int DIMENSION = 4;
     public final static int NUMBER_OF_NODES = 1 << DIMENSION * DIMENSION;
     public AbstractGraph<Integer>.Tree tree;
 
-    public NineTailModel4By4() {
+    public TailModel() {
         List<AbstractGraph.Edge> edges = getEdges();
 
         UnweightedGraph<Integer> graph = new UnweightedGraph<>(edges, NUMBER_OF_NODES); 
