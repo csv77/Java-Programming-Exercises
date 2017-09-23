@@ -234,7 +234,43 @@ public class WeightedGraph<V> extends AbstractGraph<V> {
         // Create a ShortestPathTree
         return new ShortestPathTree(sourceVertex, parent, T, cost);
     }
+    
+    public ShortestPathTree getShortestPath2(int sourceVertex) {
+        double[] cost = new double[getSize()];
+        for(int i = 0; i < cost.length; i++) {
+            cost[i] = Double.POSITIVE_INFINITY;
+        }
+        cost[sourceVertex] = 0;
 
+        int[] parent = new int[getSize()];
+        parent[sourceVertex] = -1;
+
+        List<Integer> T = new ArrayList<>();
+        Double[][] adjacencyMatrix = getAdjacencyMatrix();
+
+        while (T.size() < getSize()) {
+            int u = -1;
+            double currentMinCost = Double.POSITIVE_INFINITY;
+            for(int i = 0; i < getSize(); i++) {
+                if(!T.contains(i) && cost[i] < currentMinCost) {
+                    currentMinCost = cost[i];
+                    u = i;
+                }
+            }
+
+            T.add(u);
+            
+            for(int i = 0; i < getSize(); i++) {
+                if(adjacencyMatrix[u][i] != null && !T.contains(i) && cost[i] > cost[u] + adjacencyMatrix[u][i]) {
+                    cost[i] = cost[u] + adjacencyMatrix[u][i];
+                    parent[i] = u;
+                }
+            }
+        }
+        
+        return new ShortestPathTree(sourceVertex, parent, T, cost);
+    }
+    
     /** ShortestPathTree is an inner class in WeightedGraph */
     public class ShortestPathTree extends Tree {
         private double[] cost; // cost[v] is the cost from v to source
