@@ -1,6 +1,7 @@
 package exercise_28_13;
 
 import exercise_28_05.AbstractGraph;
+import exercise_28_05.AbstractGraph.Edge;
 import exercise_28_05.UnweightedGraph;
 import java.io.Serializable;
 import java.util.*;
@@ -8,7 +9,7 @@ import java.util.*;
 public class TailModel implements Serializable{
     public final static int DIMENSION = 4;
     public final static int NUMBER_OF_NODES = 1 << DIMENSION * DIMENSION;
-    public AbstractGraph<Integer>.Tree tree;
+    public UnweightedGraph<Integer>.Tree tree;
 
     public TailModel() {
         List<AbstractGraph.Edge> edges = getEdges();
@@ -19,7 +20,7 @@ public class TailModel implements Serializable{
     }
 
     private List<AbstractGraph.Edge> getEdges() {
-        List<AbstractGraph.Edge> edges = new ArrayList<>();
+        List<Edge> edges = new ArrayList<Edge>();
 
         for(int u = 0; u < NUMBER_OF_NODES; u++) {
             for(int k = 0; k < DIMENSION * DIMENSION; k++) {
