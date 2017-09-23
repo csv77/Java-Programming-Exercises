@@ -8,6 +8,10 @@ public class NineTailModel {
     public final static int NUMBER_OF_NODES = 512;
     protected AbstractGraph<Integer>.Tree tree;
 
+    public AbstractGraph.Tree getTree() {
+        return tree;
+    }
+
     public NineTailModel() {
         List<AbstractGraph.Edge> edges = getEdges();
 
