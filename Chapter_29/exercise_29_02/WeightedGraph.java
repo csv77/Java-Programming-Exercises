@@ -219,9 +219,12 @@ public class WeightedGraph<V> extends AbstractGraph<V> {
                     u = i;
                 }
             }
-
-            T.add(u); // Add a new vertex to T
-
+            if(u != -1) {
+                T.add(u); // Add a new vertex to T
+            }
+            else {
+                break;
+            }
             // Adjust cost[v] for v that is adjacent to u and v in V - T
             for(Edge e : neighbors.get(u)) {
                 if(!T.contains(e.v) && cost[e.v] > cost[u] + ((WeightedEdge)e).weight) {
