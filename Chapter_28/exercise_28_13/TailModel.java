@@ -2,9 +2,10 @@ package exercise_28_13;
 
 import exercise_28_05.AbstractGraph;
 import exercise_28_05.UnweightedGraph;
+import java.io.Serializable;
 import java.util.*;
 
-public class TailModel {
+public class TailModel implements Serializable{
     public final static int DIMENSION = 4;
     public final static int NUMBER_OF_NODES = 1 << DIMENSION * DIMENSION;
     public AbstractGraph<Integer>.Tree tree;
