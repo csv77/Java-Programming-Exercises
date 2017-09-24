@@ -2,7 +2,7 @@ package exercise_29_02;
 
 import exercise_28_05.AbstractGraph;
 
-    public class WeightedEdge extends AbstractGraph.Edge implements Comparable<WeightedEdge> {
+public class WeightedEdge extends AbstractGraph.Edge implements Comparable<WeightedEdge> {
     public double weight; // The weight on edge (u, v)
 
     /** Create a weighted edge on (u, v) */
