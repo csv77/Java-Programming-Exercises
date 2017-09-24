@@ -1,8 +1,9 @@
 package exercise_28_05;
 
+import java.io.Serializable;
 import java.util.*;
 
-public abstract class AbstractGraph<V> implements Graph<V> {
+public abstract class AbstractGraph<V> implements Graph<V>, Serializable {
     protected List<V> vertices = new ArrayList<>(); // Store vertices
     protected List<List<Edge>> neighbors = new ArrayList<>(); // Adjacency lists
 
@@ -142,7 +143,7 @@ public abstract class AbstractGraph<V> implements Graph<V> {
     }
 
     /** Edge inner class inside the AbstractGraph class */
-    public static class Edge {
+    public static class Edge implements Serializable {
         public int u; // Starting vertex of the edge
         public int v; // Ending vertex of the edge
 
@@ -314,7 +315,7 @@ public abstract class AbstractGraph<V> implements Graph<V> {
     
     /** Tree inner class inside the AbstractGraph class */
     /** To be discussed in Section 28.5 */
-    public class Tree {
+    public class Tree implements Serializable {
         private int root; // The root of the tree
         private int[] parent; // Store the parent of each vertex
         private List<Integer> searchOrder; // Store the search order

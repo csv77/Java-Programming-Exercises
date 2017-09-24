@@ -1,8 +1,9 @@
 package exercise_28_05;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class UnweightedGraph<V> extends AbstractGraph<V> {
+public class UnweightedGraph<V> extends AbstractGraph<V> implements Serializable {
     /** Construct an empty graph */
     public UnweightedGraph() {
     }
