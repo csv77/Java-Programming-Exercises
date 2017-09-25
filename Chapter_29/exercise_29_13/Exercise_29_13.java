@@ -51,7 +51,7 @@ public class Exercise_29_13 extends Application {
         tfEnd.setId("textfield");
         
         HBox hBoxForButtons = new HBox();
-        hBoxForButtons.getChildren().addAll(new Label("Starting City:"), tfStart, new Label("Endind City"), tfEnd, btShortestPath);
+        hBoxForButtons.getChildren().addAll(new Label("Starting City:"), tfStart, new Label("Endind City:"), tfEnd, btShortestPath);
         borderPane.setBottom(hBoxForButtons);
         
         Label lbStatus = new Label();
