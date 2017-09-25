@@ -2,7 +2,6 @@ package exercise_29_13;
 
 import exercise_28_19.Displayable;
 import exercise_29_06.WeightedGraph;
-import exercise_29_13.Exercise_29_13.City;
 import java.util.List;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
@@ -50,7 +49,7 @@ public class GraphView extends Pane {
     public void drawPath(int startingVertex, int endingVertex) {
         tree = graph.getShortestPath(startingVertex);
         if(tree != null) {
-            List<City> path = tree.getPath(endingVertex);
+            List<? extends Displayable> path = tree.getPath(endingVertex);
             for(int i = 0; i < path.size() - 1; i++) {
                 int x1 = path.get(i).getX();
                 int y1 = path.get(i).getY();
