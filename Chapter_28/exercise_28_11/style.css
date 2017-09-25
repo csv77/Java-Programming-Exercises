@@ -42,6 +42,11 @@ HBox {
     -fx-stroke-width: 3;
 }
 
+#redline {
+    -fx-stroke: red;
+    -fx-stroke-width: 3;
+}
+
 #textfield {
     -fx-alignment: BASELINE_LEFT
 }
