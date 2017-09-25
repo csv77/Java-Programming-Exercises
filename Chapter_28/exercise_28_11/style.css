@@ -41,3 +41,7 @@ HBox {
     -fx-stroke: deepskyblue;
     -fx-stroke-width: 3;
 }
+
+#textfield {
+    -fx-alignment: BASELINE_LEFT
+}
