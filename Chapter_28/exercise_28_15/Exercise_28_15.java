@@ -48,11 +48,11 @@ public class Exercise_28_15 extends Application {
             hBoxForNodes.getChildren().clear();
             hBoxForNodes.getChildren().add(pane);
             pane.setInitialNode();
-            List<Integer> path = model.getShortestPath(NineTailModel4By4.getIndex(pane.node));
+            List<Integer> path = model.getShortestPath(TailModel.getIndex(pane.node));
             if(path != null) {
                 for(int i = 1; i < path.size(); i++) {
-                    char[] node = NineTailModel4By4.getNode(path.get(i));
-                    char[] previousNode = NineTailModel4By4.getNode(path.get(i - 1));
+                    char[] node = TailModel.getNode(path.get(i));
+                    char[] previousNode = TailModel.getNode(path.get(i - 1));
                     NineTailPane nextPane = new NineTailPane(node, previousNode);
                     hBoxForNodes.getChildren().add(nextPane);
                 }
