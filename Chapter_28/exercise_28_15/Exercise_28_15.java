@@ -1,6 +1,6 @@
 package exercise_28_15;
 
-import exercise_28_13.NineTailModel4By4;
+import exercise_28_13.TailModel;
 import java.util.List;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class Exercise_28_15 extends Application {
-    private NineTailModel4By4 model = new NineTailModel4By4();
+    private TailModel model = new TailModel();
     private NineTailPane pane = new NineTailPane();
     
     @Override
