@@ -1,6 +1,6 @@
 package exercise_28_15;
 
-import exercise_28_13.NineTailModel4By4;
+import exercise_28_13.TailModel;
 import java.util.List;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class Exercise_28_15 extends Application {
-    private NineTailModel4By4 model = new NineTailModel4By4();
+    private TailModel model = new TailModel();
     private NineTailPane pane = new NineTailPane();
     
     @Override
@@ -39,7 +39,7 @@ public class Exercise_28_15 extends Application {
         
         Scene scene = new Scene(borderPane, 300, 200);
         //scene.getStylesheets().add(exercise_28_11.Exercise_28_11.class.getResource("style.css").toExternalForm());
-        scene.getStylesheets().add("file:///c:/egyéb/SZE/Intro_to_Java_Programming_10th_exercises/Java-Programming-Exercises/Chapter_28/exercise_28_11/style.css");
+        scene.getStylesheets().add("file:///c:/programming/java/Intro_to_Java_Programming_10th_exercises/JavaProgrammingExercises/Chapter_28/exercise_28_11/style.css");
         primaryStage.setTitle("Exercise_28_15");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -48,11 +48,11 @@ public class Exercise_28_15 extends Application {
             hBoxForNodes.getChildren().clear();
             hBoxForNodes.getChildren().add(pane);
             pane.setInitialNode();
-            List<Integer> path = model.getShortestPath(NineTailModel4By4.getIndex(pane.node));
+            List<Integer> path = model.getShortestPath(TailModel.getIndex(pane.node));
             if(path != null) {
                 for(int i = 1; i < path.size(); i++) {
-                    char[] node = NineTailModel4By4.getNode(path.get(i));
-                    char[] previousNode = NineTailModel4By4.getNode(path.get(i - 1));
+                    char[] node = TailModel.getNode(path.get(i));
+                    char[] previousNode = TailModel.getNode(path.get(i - 1));
                     NineTailPane nextPane = new NineTailPane(node, previousNode);
                     hBoxForNodes.getChildren().add(nextPane);
                 }
