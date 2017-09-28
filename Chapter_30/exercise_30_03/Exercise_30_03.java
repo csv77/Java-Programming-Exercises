@@ -1,27 +1,31 @@
 package exercise_30_03;
 
+import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Exercise_30_03 extends Application {
-    private ImageView imageView = new ImageView("image/us.gif");
     
     @Override
     public void start(Stage primaryStage) {
+        ImageView imageView = new ImageView("image/us.gif");
         Pane pane = new Pane();
         pane.getChildren().add(imageView);
-        imageView.setX(100);
-        imageView.setY(200);
-                
+        PathTransition pt = new PathTransition(Duration.millis(10000), new Line(100, 200, 100, 0), imageView);
+        pt.setCycleCount(5);
+        pt.play();
+        
         new Thread(() -> {
             try {
                 while(true) {
-                    Platform.runLater(() -> setImageViewCoordinates());
-                    Thread.sleep(10);
+                    Platform.runLater(() -> pt.play());
+                    Thread.sleep(1);
                 }
             }
             catch (InterruptedException ex) {
@@ -29,19 +33,10 @@ public class Exercise_30_03 extends Application {
             }
         }).start();
         
-        Scene scene = new Scene(pane, 300, 250);
+        Scene scene = new Scene(pane, 250, 200);
         primaryStage.setTitle("Exercise_30_03");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-    
-    public void setImageViewCoordinates() {
-        if(imageView.getY() > 0) {
-            imageView.setY(imageView.getY() - 1);
-        }
-        else {
-            imageView.setY(200);
-        }
     }
 
     public static void main(String[] args) {
