@@ -101,8 +101,8 @@ public class Exercise_30_02 extends Application {
             else {
                 x++;
             }
-            setCoordinates();
             y = height;
+            setCoordinates();
         }
         
         public void setCoordinates() {
