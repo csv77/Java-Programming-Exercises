@@ -21,7 +21,7 @@ public class Exercise_30_09 {
                 set.add(i);
             }
             try {
-                    Thread.sleep(1000);
+                Thread.sleep(1000);
             }
             catch (InterruptedException ex) {
             }
