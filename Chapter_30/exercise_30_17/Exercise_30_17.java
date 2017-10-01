@@ -27,7 +27,7 @@ public class Exercise_30_17 {
         long endTime = System.currentTimeMillis();
         System.out.println("\nParallel time with " + Runtime.getRuntime().availableProcessors() + 
           " processors is " + (endTime - startTime) + " milliseconds");
-        
+
         startTime = System.currentTimeMillis();
         result = multiplyMatrix(a, b);
         endTime = System.currentTimeMillis();
