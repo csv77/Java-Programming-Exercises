@@ -16,7 +16,7 @@ public class Exercise_30_16 {
                 b[i][j] = Math.random();
             }
         }
-        
+                
         long startTime = System.currentTimeMillis();
         result = parallelAddMatrix(a, b);
         long endTime = System.currentTimeMillis();
