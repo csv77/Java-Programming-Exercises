@@ -13,8 +13,8 @@ public class Exercise_30_13 {
         Integer[] list1 = new Integer[SIZE];
         Integer[] list2 = new Integer[SIZE];
 
-        for (int i = 0; i < list1.length; i++)
-          list1[i] = list2[i] = new Integer((int)(Math.random() * 10000000));
+        for(int i = 0; i < list1.length; i++)
+            list1[i] = list2[i] = new Integer((int)(Math.random() * 10000000));
 
         long startTime = System.currentTimeMillis();
         parallelMergeSort(list1);
