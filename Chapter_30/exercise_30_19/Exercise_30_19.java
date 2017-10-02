@@ -72,17 +72,6 @@ public class Exercise_30_19 extends Application {
     }
     
     private class SelectionSortPane extends HistogramPane {
-        private Thread thread = new Thread(() -> {
-            try {
-                while(true) {
-                    Platform.runLater(() -> selectionSort());
-                    Thread.sleep(1000);
-                }
-            }
-            catch(InterruptedException ex) {
-                ex.printStackTrace();
-            }
-        });
         
         public SelectionSortPane(ArrayList<Integer> list, Label lblSortType) {
             super(list, lblSortType);
@@ -106,7 +95,7 @@ public class Exercise_30_19 extends Application {
             }
         }
     }
-    
+        
     public static void main(String[] args) {
         launch(args);
     }
