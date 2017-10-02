@@ -1,0 +1,47 @@
+#hboxfornodes {
+    -fx-border-color: black;
+    -fx-padding: 2;
+    -fx-alignment: bottom-left;
+}
+
+#pane {
+    -fx-border-color: black;
+}
+
+.button {
+    -fx-font-family: "Ariel";
+    -fx-font-weight: bold;
+    -fx-background-radius: 5, 5;
+}
+
+.label {
+    -fx-font-family: "Ariel";
+    -fx-font-weight: bold;
+}
+
+#labels {
+    -fx-font-family: "Courier New";
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
+
+#labelwithred {
+    -fx-text-fill: red;
+    -fx-font-family: "Courier New";
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
+
+#line {
+    -fx-stroke: deepskyblue;
+    -fx-stroke-width: 3;
+}
+
+#redline {
+    -fx-stroke: red;
+    -fx-stroke-width: 3;
+}
+
+#textfield {
+    -fx-alignment: BASELINE_LEFT
+}
