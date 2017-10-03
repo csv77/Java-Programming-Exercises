@@ -18,19 +18,19 @@ public class Exercise_30_19 extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        ArrayList<Integer> list1 = new ArrayList<>();
+        ArrayList<Integer> listOfElements = new ArrayList<>();
         for(int i = 0; i < 50; i++) {
-            list1.add(i + 1);
+            listOfElements.add(i + 1);
         }
-        Collections.shuffle(list1);
+        Collections.shuffle(listOfElements);
         
         HBox hBox = new HBox(10);
         hBox.setPadding(new Insets(5));
         
-        HistogramPane pane1 = new SelectionSortPane(list1, new Label("Selection Sort"));
-//        HistogramPane pane2 = new HistogramPane(list1, new Label("Insertion Sort"));
-//        HistogramPane pane3 = new HistogramPane(list1, new Label("Bubble Sort"));
-        hBox.getChildren().addAll(pane1);
+        HistogramPane paneForSelectionSort = new SelectionSortPane(listOfElements, new Label("Selection Sort"));
+        HistogramPane paneForInsertionSort = new InsertionSortPane(listOfElements, new Label("Insertion Sort"));
+        HistogramPane paneForBubbleSort = new BubbleSortPane(listOfElements, new Label("Bubble Sort"));
+        hBox.getChildren().addAll(paneForSelectionSort, paneForInsertionSort, paneForBubbleSort);
         
         Scene scene = new Scene(hBox);
         scene.getStylesheets().add("file:///c:/programming/java/Intro_to_Java_Programming_10th_exercises/JavaProgrammingExercises/Chapter_30/exercise_30_19/style2.css");
@@ -40,7 +40,7 @@ public class Exercise_30_19 extends Application {
     }
     
     private abstract class HistogramPane extends BorderPane {
-        protected ArrayList<Integer> list;
+        protected Integer[] list;
         protected HBox hBoxForChart = new HBox();
         protected Label lblSortType;
         protected Rectangle[] rectangles;
@@ -48,16 +48,17 @@ public class Exercise_30_19 extends Application {
         protected final int HEIGHT = 5;
 
         public HistogramPane(ArrayList<Integer> list, Label lblSortType) {
-            this.list = list;
+            this.list = new Integer[list.size()];
+            this.list = list.toArray(this.list);
             this.lblSortType = lblSortType;
             rectangles = new Rectangle[list.size()];
             setCenter(hBoxForChart);
             setTop(lblSortType);
             BorderPane.setAlignment(lblSortType, Pos.CENTER);
-            repaintHistogram();
+            repaintHistogram(-1);
         }
 
-        public void repaintHistogram() {
+        public void repaintHistogram(int index) {
             hBoxForChart.getChildren().clear();
             hBoxForChart.setAlignment(Pos.BASELINE_CENTER);
             int j = 0;
@@ -68,34 +69,106 @@ public class Exercise_30_19 extends Application {
                 hBoxForChart.getChildren().add(rectangles[j]);
                 j++;
             }
+            if(index != -1) {
+                rectangles[index].setFill(Color.BLUE);
+            }
         }
     }
     
-    private class SelectionSortPane extends HistogramPane {
+    private class SelectionSortPane extends HistogramPane implements Runnable {
         
         public SelectionSortPane(ArrayList<Integer> list, Label lblSortType) {
             super(list, lblSortType);
+            Thread thread = new Thread(this);
+            thread.start();
         }
 
-        public void selectionSort() {
-            for(int i = 0; i < list.size() - 1; i++) {
-                int currentMin = list.get(i);
+        @Override
+        public void run() {
+            for(int i = 0; i < list.length - 1; i++) {
+                int currentMin = list[i];
                 int currentMinIndex = i;
-                for(int j = i + 1; j < list.size(); j++) {
-                    if(currentMin > list.get(j)) {
-                        currentMin = list.get(j);
+                for(int j = i + 1; j < list.length; j++) {
+                    if(currentMin > list[j]) {
+                        currentMin = list[j];
                         currentMinIndex = j;
                     }
                 }
                 if(currentMinIndex != i) {
-                    list.set(currentMinIndex, list.get(i));
-                    list.set(i, currentMin);
+                    list[currentMinIndex] = list[i];
+                    list[i] = currentMin;
                 }
-                repaintHistogram();
+                int index = i;
+                Platform.runLater(() -> repaintHistogram(index));
+                try {
+                    Thread.sleep(500);
+                }
+                catch (InterruptedException ex) {
+                }
             }
         }
     }
+    
+    private class InsertionSortPane extends HistogramPane implements Runnable {
         
+        public InsertionSortPane(ArrayList<Integer> list, Label lblSortType) {
+            super(list, lblSortType);
+            Thread thread = new Thread(this);
+            thread.start();
+        }
+
+        @Override
+        public void run() {
+            for(int i = 1; i < list.length; i++) {
+                int currentElement = list[i];
+                int k;
+                for(k = i - 1; k >= 0 && list[k] > currentElement; k--) {
+                    list[k + 1] = list[k];
+                }
+                list[k + 1] = currentElement;
+                int index = i;
+                Platform.runLater(() -> repaintHistogram(index));
+                try {
+                    Thread.sleep(500);
+                }
+                catch (InterruptedException ex) {
+                }
+            }
+        }
+    }
+    
+    private class BubbleSortPane extends HistogramPane implements Runnable {
+        
+        public BubbleSortPane(ArrayList<Integer> list, Label lblSortType) {
+            super(list, lblSortType);
+            Thread thread = new Thread(this);
+            thread.start();
+        }
+
+        @Override
+        public void run() {
+            boolean needNextPass = true;
+            for(int k = 1; k < list.length && needNextPass; k++) {
+                needNextPass = false;
+                for(int i = 0; i < list.length - k; i++) {
+                    if(list[i] > list[i + 1]) {
+                        Integer temp = list[i];
+                        list[i] = list[i + 1];
+                        list[i + 1] = temp;
+                        needNextPass = true;
+                    }
+                }
+                int index = list.length - k;
+                Platform.runLater(() -> repaintHistogram(index));
+                try {
+                    Thread.sleep(500);
+                }
+                catch (InterruptedException ex) {
+                }
+            }
+        }
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }
