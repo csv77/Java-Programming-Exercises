@@ -85,27 +85,29 @@ public class Exercise_30_19 extends Application {
 
         @Override
         public void run() {
-            for(int i = 0; i < list.length - 1; i++) {
-                int currentMin = list[i];
-                int currentMinIndex = i;
-                for(int j = i + 1; j < list.length; j++) {
-                    if(currentMin > list[j]) {
-                        currentMin = list[j];
-                        currentMinIndex = j;
+            try {
+                for(int i = 0; i < list.length - 1; i++) {
+                    int currentMin = list[i];
+                    int currentMinIndex = i;
+                    for(int j = i + 1; j < list.length; j++) {
+                        if(currentMin > list[j]) {
+                            currentMin = list[j];
+                            currentMinIndex = j;
+                        }
                     }
-                }
-                if(currentMinIndex != i) {
-                    list[currentMinIndex] = list[i];
-                    list[i] = currentMin;
-                }
-                int index = i;
-                Platform.runLater(() -> repaintHistogram(index));
-                try {
+                    if(currentMinIndex != i) {
+                        list[currentMinIndex] = list[i];
+                        list[i] = currentMin;
+                    }
+                    int index = i;
+                    Platform.runLater(() -> repaintHistogram(index));
                     Thread.sleep(500);
                 }
-                catch (InterruptedException ex) {
-                }
             }
+            catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            Platform.runLater(() -> repaintHistogram(list.length - 1));
         }
     }
     
@@ -119,20 +121,21 @@ public class Exercise_30_19 extends Application {
 
         @Override
         public void run() {
-            for(int i = 1; i < list.length; i++) {
-                int currentElement = list[i];
-                int k;
-                for(k = i - 1; k >= 0 && list[k] > currentElement; k--) {
-                    list[k + 1] = list[k];
-                }
-                list[k + 1] = currentElement;
-                int index = i;
-                Platform.runLater(() -> repaintHistogram(index));
-                try {
+            try {
+                for(int i = 1; i < list.length; i++) {
+                    int currentElement = list[i];
+                    int k;
+                    for(k = i - 1; k >= 0 && list[k] > currentElement; k--) {
+                        list[k + 1] = list[k];
+                    }
+                    list[k + 1] = currentElement;
+                    int index = i;
+                    Platform.runLater(() -> repaintHistogram(index));
                     Thread.sleep(500);
                 }
-                catch (InterruptedException ex) {
-                }
+            }
+            catch (InterruptedException ex) {
+                ex.printStackTrace();
             }
         }
     }
@@ -148,23 +151,32 @@ public class Exercise_30_19 extends Application {
         @Override
         public void run() {
             boolean needNextPass = true;
-            for(int k = 1; k < list.length && needNextPass; k++) {
-                needNextPass = false;
-                for(int i = 0; i < list.length - k; i++) {
-                    if(list[i] > list[i + 1]) {
-                        Integer temp = list[i];
-                        list[i] = list[i + 1];
-                        list[i + 1] = temp;
-                        needNextPass = true;
+            int l = 0;
+            try {
+                for(int k = 1; k < list.length && needNextPass; k++) {
+                    needNextPass = false;
+                    for(int i = 0; i < list.length - k; i++) {
+                        if(list[i] > list[i + 1]) {
+                            Integer temp = list[i];
+                            list[i] = list[i + 1];
+                            list[i + 1] = temp;
+                            needNextPass = true;
+                        }
                     }
-                }
-                int index = list.length - k;
-                Platform.runLater(() -> repaintHistogram(index));
-                try {
+                    int index = list.length - k;
+                    l = index;
+                    Platform.runLater(() -> repaintHistogram(index));
                     Thread.sleep(500);
                 }
-                catch (InterruptedException ex) {
+                while(l >= 0) {
+                    int index = l;
+                    Platform.runLater(() -> repaintHistogram(index));
+                    l--;
+                    Thread.sleep(500);
                 }
+            }
+            catch(InterruptedException ex) {
+                ex.printStackTrace();
             }
         }
     }
