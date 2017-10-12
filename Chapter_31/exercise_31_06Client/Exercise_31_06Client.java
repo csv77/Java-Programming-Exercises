@@ -29,6 +29,7 @@ public class Exercise_31_06Client extends Application implements StudentAddressC
 
     private String host = "localhost";
     private Socket socket;
+    private int index = 0;
     private ObjectOutputStream outputToServer;
     private ObjectInputStream inputFromServer;
 
@@ -78,6 +79,8 @@ public class Exercise_31_06Client extends Application implements StudentAddressC
                 StudentAddress address = getDataFromTextFields();
                 outputToServer.writeInt(ADD);
                 outputToServer.writeObject(address);
+                outputToServer.flush();
+                index = inputFromServer.readInt();
             }
             catch (IOException ex) {
                 ex.printStackTrace();
@@ -99,7 +102,33 @@ public class Exercise_31_06Client extends Application implements StudentAddressC
         bt.setOnAction(e -> {
             try {
                 outputToServer.writeInt(request);
-                setTextFields((StudentAddress)(inputFromServer.readObject()));
+                outputToServer.flush();
+                switch(request) {
+                    case FIRST :
+                        index = 0;
+                        break;
+                    case NEXT :
+                        int size = inputFromServer.readInt();
+                        if(index < size - 1) {
+                            index++;
+                        }
+                        outputToServer.writeInt(index);
+                        outputToServer.flush();
+                        break;
+                    case PREVIOUS :
+                        if(index > 0) {
+                            index--;
+                        }
+                        outputToServer.writeInt(index);
+                        outputToServer.flush();
+                        break;
+                    case LAST :
+                        index = inputFromServer.readInt();
+                        break;
+                }
+                if(inputFromServer.readBoolean()) {
+                    setTextFields((StudentAddress)(inputFromServer.readObject()));
+                }
             }
             catch (IOException ex) {
                 ex.printStackTrace();
